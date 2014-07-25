@@ -97,8 +97,10 @@ AC_CONFIG_FILES([
     Makefile
     m4/Makefile
     qlo/Makefile
+    qlo/enumerations/Makefile
     qlo/valueobjects/Makefile
     AddinCpp/Makefile
+    AddinCpp/conversions/Makefile
     Main/Makefile
     ])
 
