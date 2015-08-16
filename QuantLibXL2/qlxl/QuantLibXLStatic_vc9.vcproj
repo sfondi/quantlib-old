@@ -121,7 +121,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories=".,../../ObjectHandler,../../QuantLib,../../QuantLibAddin2"
+				AdditionalIncludeDirectories="..;../../ObjectHandler;../../QuantLib;../../QuantLibAddin2"
 				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_USRDLL;XLL_STATIC"
 				StringPooling="true"
 				MinimalRebuild="false"
@@ -202,6 +202,18 @@
 				>
 			</File>
 			<File
+				RelativePath=".\functions\function_handles.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\functions\function_indexes.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\functions\function_indexes2.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\functions\function_instruments.cpp"
 				>
 			</File>
@@ -255,6 +267,18 @@
 			</File>
 			<File
 				RelativePath=".\register\register_exercise.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\register\register_handles.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\register\register_indexes.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\register\register_indexes2.cpp"
 				>
 			</File>
 			<File

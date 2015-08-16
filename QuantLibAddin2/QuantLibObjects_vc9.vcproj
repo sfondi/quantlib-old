@@ -289,6 +289,30 @@
 					>
 				</File>
 				<File
+					RelativePath=".\qlo\serialization\create\create_handles.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\qlo\serialization\create\create_handles.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\qlo\serialization\create\create_indexes.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\qlo\serialization\create\create_indexes.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\qlo\serialization\create\create_indexes2.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\qlo\serialization\create\create_indexes2.hpp"
+					>
+				</File>
+				<File
 					RelativePath=".\qlo\serialization\create\create_instruments.cpp"
 					>
 				</File>
@@ -382,6 +406,30 @@
 				</File>
 				<File
 					RelativePath=".\qlo\serialization\register\serialization_exercise.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\qlo\serialization\register\serialization_handles.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\qlo\serialization\register\serialization_handles.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\qlo\serialization\register\serialization_indexes.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\qlo\serialization\register\serialization_indexes.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\qlo\serialization\register\serialization_indexes2.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\qlo\serialization\register\serialization_indexes2.hpp"
 					>
 				</File>
 				<File
@@ -482,6 +530,30 @@
 				>
 			</File>
 			<File
+				RelativePath=".\qlo\valueobjects\vo_handles.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\valueobjects\vo_handles.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\valueobjects\vo_indexes.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\valueobjects\vo_indexes.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\valueobjects\vo_indexes2.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\qlo\valueobjects\vo_indexes2.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\qlo\valueobjects\vo_instruments.cpp"
 				>
 			</File>
@@ -555,6 +627,14 @@
 			</File>
 		</Filter>
 		<File
+			RelativePath=".\qlo\handle.hpp"
+			>
+		</File>
+		<File
+			RelativePath=".\qlo\handleimpl.hpp"
+			>
+		</File>
+		<File
 			RelativePath=".\qlo\init.cpp"
 			>
 		</File>
@@ -568,6 +648,14 @@
 		</File>
 		<File
 			RelativePath=".\qlo\obj_exercise.hpp"
+			>
+		</File>
+		<File
+			RelativePath=".\qlo\obj_indexes.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\qlo\obj_indexes.hpp"
 			>
 		</File>
 		<File
@@ -632,6 +720,22 @@
 		</File>
 		<File
 			RelativePath=".\qlo\objmanual_date.hpp"
+			>
+		</File>
+		<File
+			RelativePath=".\qlo\objmanual_handles.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\qlo\objmanual_handles.hpp"
+			>
+		</File>
+		<File
+			RelativePath=".\qlo\objmanual_indexes2.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\qlo\objmanual_indexes2.hpp"
 			>
 		</File>
 		<File
