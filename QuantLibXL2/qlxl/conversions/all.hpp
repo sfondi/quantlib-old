@@ -1,7 +1,6 @@
-/* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2014 Eric Ehlers
+ Copyright (C) 2006, 2007 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -17,21 +16,17 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef qla_register_types_hpp
-#define qla_register_types_hpp
+#ifndef qlxl_conversions_all_hpp
+#define qlxl_conversions_all_hpp
 
-namespace QuantLibAddin {
-
-    void registerTypesCalendars();
-    void registerTypesDayCounters();
-    void registerTypesOptionTypes();
-    void registerTypesConventions();
-
-    void unregisterTypesCalendars();
-    void unregisterTypesDayCounters();
-    void unregisterTypesOptionTypes();
-    void unregisterTypesConventions();
-}
+#include <ohxl/conversions/all.hpp>
+//#include <qlo/conversions/all.hpp>
+#include <qlxl/conversions/convert2.hpp>
+//#include <qlxl/conversions/opertovector.hpp>
+//#include <qlxl/conversions/opertomatrix.hpp>
+#include <qlxl/conversions/scalartooper.hpp>
+//#include <qlxl/conversions/vectortooper.hpp>
+//#include <qlxl/conversions/matrixtooper.hpp>
 
 #endif
 
