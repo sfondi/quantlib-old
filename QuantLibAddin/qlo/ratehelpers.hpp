@@ -195,6 +195,15 @@ namespace QuantLibAddin {
             const boost::shared_ptr<QuantLib::OvernightIndex>& overnightIndex,
             const QuantLib::Handle<QuantLib::YieldTermStructure>& discount,
             bool permanent);
+        OISRateHelper(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            QuantLib::Natural settlementDays,
+            const QuantLib::Period& tenor, // swap maturity
+            const QuantLib::Handle<QuantLib::Quote>& fixedRate,
+            const boost::shared_ptr<QuantLib::OvernightIndex>& overnightIndex,
+            const QuantLib::Handle<QuantLib::YieldTermStructure>& discount,
+            const QuantLib::Frequency paymentFrequency,
+            bool permanent);
     };
 
     class DatedOISRateHelper : public RateHelper {

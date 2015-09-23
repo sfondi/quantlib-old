@@ -267,7 +267,28 @@ namespace QuantLibAddin {
             QuantLib::OISRateHelper(settlementDays,
                                     tenor,
                                     fixedRate,
-                                    overnightIndex));
+                                    overnightIndex,
+                                    discount));
+        quoteName_ = f(properties->getSystemProperty("FixedRate"));
+    }
+
+    OISRateHelper::OISRateHelper(
+                        const shared_ptr<ValueObject>& properties,
+                        QuantLib::Natural settlementDays,
+                        const QuantLib::Period& tenor,
+                        const QuantLib::Handle<QuantLib::Quote>& fixedRate,
+                        const shared_ptr<QuantLib::OvernightIndex>& overnightIndex,
+                        const QuantLib::Handle<QuantLib::YieldTermStructure>& discount,
+                        const QuantLib::Frequency paymentFrequency,
+                        bool permanent)
+    : RateHelper(properties, permanent) {
+        libraryObject_ = shared_ptr<QuantLib::OISRateHelper>(new
+            QuantLib::OISRateHelper(settlementDays,
+                                    tenor,
+                                    fixedRate,
+                                    overnightIndex,
+                                    discount,
+                                    paymentFrequency));
         quoteName_ = f(properties->getSystemProperty("FixedRate"));
     }
 
