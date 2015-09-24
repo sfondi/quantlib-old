@@ -28,6 +28,7 @@
 #include <ql/termstructures/yield/piecewiseyieldcurve.hpp>
 #include <ql/math/interpolations/forwardflatinterpolation.hpp>
 #include <ql/math/interpolations/backwardflatinterpolation.hpp>
+#include <ql/math/interpolations/mixedinterpolation.hpp>
 
 namespace QuantLibAddin {
 
@@ -44,6 +45,7 @@ namespace QuantLibAddin {
             QuantLib::Real accuracy,
             const std::string& traitsID,
             const std::string& interpolatorID,
+            const QuantLib::Size n,
             bool permanent)
     : YieldTermStructure(properties, permanent)
     {
@@ -56,7 +58,8 @@ namespace QuantLibAddin {
                                               dayCounter,
                                               jumps,
                                               jumpDates,
-                                              accuracy);
+                                              accuracy,
+                                              n);
 
 		// convert input strings to enumerated datatypes
 		InterpolatedYieldCurve::Traits traits =
@@ -213,6 +216,7 @@ namespace QuantLibAddin {
             init<QuantLib::ZeroYield, QuantLib::LogCubic>(      InterpolatedYieldCurvePair(InterpolatedYieldCurve::ZeroYield, InterpolatedYieldCurve::LogParabolic));
             init<QuantLib::ZeroYield, QuantLib::Cubic>(         InterpolatedYieldCurvePair(InterpolatedYieldCurve::ZeroYield, InterpolatedYieldCurve::MonotonicParabolic));
             init<QuantLib::ZeroYield, QuantLib::LogCubic>(      InterpolatedYieldCurvePair(InterpolatedYieldCurve::ZeroYield, InterpolatedYieldCurve::MonotonicLogParabolic));
+            init<QuantLib::ZeroYield, QuantLib::MixedLinearCubic>(InterpolatedYieldCurvePair(InterpolatedYieldCurve::ZeroYield, InterpolatedYieldCurve::MixedLinearCubicNaturalSpline));
 
         }
 

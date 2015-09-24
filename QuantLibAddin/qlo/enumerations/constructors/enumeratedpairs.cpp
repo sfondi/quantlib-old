@@ -29,6 +29,8 @@
 #include <ql/termstructures/yield/piecewiseyieldcurve.hpp>
 #include <ql/math/interpolations/forwardflatinterpolation.hpp>
 #include <ql/math/interpolations/backwardflatinterpolation.hpp>
+#include <ql/math/interpolations/mixedinterpolation.hpp>
+
 
 namespace QuantLibAddin {
 
@@ -882,6 +884,31 @@ namespace QuantLibAddin {
                                                               jumps, jumpDates,
                                                               accuracy,
                                                               QuantLib::LogCubic(QuantLib::CubicInterpolation::Parabolic, true)));
+    }
+
+    boost::shared_ptr<QuantLib::YieldTermStructure> ZEROYIELD_MixedLinearCubicNaturalSpline_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
+            QuantLib::Real accuracy,
+            QuantLib::Size n) {
+            return boost::shared_ptr<QuantLib::YieldTermStructure>(new
+                QuantLib::PiecewiseYieldCurve<QuantLib::ZeroYield,
+                        QuantLib::MixedLinearCubic>(nDays,
+                                                    calendar, 
+                                                    rateHelpers, 
+                                                    dayCounter, 
+                                                    jumps, 
+                                                    jumpDates, 
+                                                    accuracy,
+                                                    QuantLib::MixedLinearCubic(
+                                                                n,
+                                                                QuantLib::CubicInterpolation::Spline, false, 
+                                                                QuantLib::CubicInterpolation::SecondDerivative, 0.0,
+                                                                QuantLib::CubicInterpolation::SecondDerivative, 0.0)));
     }
 
     /* *** ForwardRate based *** */

@@ -126,7 +126,8 @@ namespace QuantLibAddin {
                             Parabolic,
                             LogParabolic,
                             MonotonicParabolic,
-                            MonotonicLogParabolic
+                            MonotonicLogParabolic,
+                            MixedLinearCubicNaturalSpline
         };
         InterpolatedYieldCurve(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
@@ -138,7 +139,8 @@ namespace QuantLibAddin {
             const std::vector<QuantLib::Date>& jumpDates,
             const std::string& traitsID,
             const std::string& interpolatorID,
-            bool permanent);
+            const QuantLib::Size n,
+            bool permanent = false);
         const std::vector<QuantLib::Time>& times() const;
         const std::vector<QuantLib::Date>& dates() const;
         const std::vector<QuantLib::Real>& data() const;

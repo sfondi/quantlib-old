@@ -29,6 +29,7 @@
 #include <ql/prices.hpp>
 #include <ql/default.hpp> // RL ADD 2010-07-15
 #include <ql/experimental/credit/defaulttype.hpp>
+#include <ql/math/interpolations/mixedinterpolation.hpp>
 
 #include <oh/enumerations/typefactory.hpp>
 
