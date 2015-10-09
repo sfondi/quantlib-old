@@ -226,6 +226,15 @@ namespace QuantLibAddin {
                     InterpolatedDiscountCurve<QuantLib::LogCubic>(
                         dates, data, dayCounter, calendar, jumps, jumpDates,
                         QuantLib::LogCubic(CubicInterpolation::Parabolic, true)));
+            } 
+            else if (interpolatorID_ == "LOGMIXEDLINEARCUBICNATURALSPLINE") {
+                libraryObject_ = shared_ptr<QuantLib::Extrapolator>(new
+                    InterpolatedZeroCurve<QuantLib::LogMixedLinearCubic>(
+                    dates, data, dayCounter, calendar, jumps, jumpDates,
+                    QuantLib::LogMixedLinearCubic(n,
+                    QuantLib::CubicInterpolation::Spline, false,
+                    QuantLib::CubicInterpolation::SecondDerivative, 0.0,
+                    QuantLib::CubicInterpolation::SecondDerivative, 0.0)));
             } else
                 QL_FAIL("unknown interpolatorID: " << interpolatorID_);
         } else if (traitsID_=="ZEROYIELD") {
@@ -450,6 +459,8 @@ namespace QuantLibAddin {
                 return boost::dynamic_pointer_cast<InterpolatedDiscountCurve<QuantLib::Cubic> >(libraryObject_)->NAME(); \
             } else if (interpolatorID_=="MONOTONICLOGPARABOLIC") { \
                 return boost::dynamic_pointer_cast<InterpolatedDiscountCurve<QuantLib::LogCubic> >(libraryObject_)->NAME(); \
+            } else if (interpolatorID_=="LOGMIXEDLINEARCUBICNATURALSPLINE") { \
+                return boost::dynamic_pointer_cast<InterpolatedZeroCurve<QuantLib::LogMixedLinearCubic> >(libraryObject_)->NAME(); \
             } else \
                 QL_FAIL("unknown interpolatorID: " << interpolatorID_); \
         } else if (traitsID_=="ZEROYIELD") { \
@@ -629,6 +640,9 @@ namespace QuantLibAddin {
                 break;
             case InterpolatedYieldCurve::MixedLinearCubicNaturalSpline:
                 out << "MixedLinearCubicNaturalSpline>";
+                break;
+            case InterpolatedYieldCurve::LogMixedLinearCubicNaturalSpline:
+                out << "LogMixedLinearCubicNaturalSpline>";
                 break;
             default:
                 OH_FAIL("Unknown value for enumeration QuantLibAddin::InterpolatedYieldCurve::Interpolator");

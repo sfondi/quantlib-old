@@ -461,6 +461,31 @@ namespace QuantLibAddin {
                                                               QuantLib::LogCubic(QuantLib::CubicInterpolation::Parabolic, true)));
     }
 
+    boost::shared_ptr<QuantLib::YieldTermStructure> DISCOUNT_LogMixedLinearCubicNaturalSpline_PiecewiseYieldCurve(
+            QuantLib::Natural nDays,
+            const QuantLib::Calendar& calendar,
+            const std::vector<boost::shared_ptr<QuantLib::RateHelper> >& rateHelpers,
+            const QuantLib::DayCounter& dayCounter,
+            const std::vector<QuantLib::Handle<QuantLib::Quote> >& jumps,
+            const std::vector<QuantLib::Date>& jumpDates,
+            QuantLib::Real accuracy,
+            QuantLib::Size n) {
+            return boost::shared_ptr<QuantLib::YieldTermStructure>(new
+                     QuantLib::PiecewiseYieldCurve<QuantLib::Discount,
+                                         QuantLib::LogMixedLinearCubic>(nDays,
+                                                 calendar,
+                                                 rateHelpers,
+                                                 dayCounter,
+                                                 jumps,
+                                                 jumpDates,
+                                                 accuracy,
+                                                 QuantLib::LogMixedLinearCubic(
+                                                        n,
+                                                        QuantLib::CubicInterpolation::Spline, false,
+                                                        QuantLib::CubicInterpolation::SecondDerivative, 0.0,
+                                                        QuantLib::CubicInterpolation::SecondDerivative, 0.0)));
+    }
+
     /* *** ZeroYield based *** */
     boost::shared_ptr<QuantLib::YieldTermStructure> ZEROYIELD_BACKWARDFLAT_PiecewiseYieldCurve(
             QuantLib::Natural nDays,

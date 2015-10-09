@@ -180,6 +180,7 @@ namespace QuantLibAddin {
             init<QuantLib::Discount, QuantLib::LogCubic>(       InterpolatedYieldCurvePair(InterpolatedYieldCurve::Discount, InterpolatedYieldCurve::LogParabolic));
             init<QuantLib::Discount, QuantLib::Cubic>(          InterpolatedYieldCurvePair(InterpolatedYieldCurve::Discount, InterpolatedYieldCurve::MonotonicParabolic));
             init<QuantLib::Discount, QuantLib::LogCubic>(       InterpolatedYieldCurvePair(InterpolatedYieldCurve::Discount, InterpolatedYieldCurve::MonotonicLogParabolic));
+            init<QuantLib::Discount, QuantLib::LogMixedLinearCubic>(InterpolatedYieldCurvePair(InterpolatedYieldCurve::Discount, InterpolatedYieldCurve::LogMixedLinearCubicNaturalSpline));
 
             // ForwardRate
             init<QuantLib::ForwardRate, QuantLib::BackwardFlat>(InterpolatedYieldCurvePair(InterpolatedYieldCurve::ForwardRate, InterpolatedYieldCurve::BackwardFlat));

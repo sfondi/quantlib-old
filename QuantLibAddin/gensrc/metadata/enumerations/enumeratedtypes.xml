@@ -1834,6 +1834,10 @@
           <string>MixedLinearCubicNaturalSpline</string>
           <value>QuantLibAddin::InterpolatedYieldCurve::MixedLinearCubicNaturalSpline</value>
         </EnumeratedType>
+        <EnumeratedType>
+          <string>LogMixedLinearCubicNaturalSpline</string>
+          <value>QuantLibAddin::InterpolatedYieldCurve::LogMixedLinearCubicNaturalSpline</value>
+        </EnumeratedType>
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
 
