@@ -34,7 +34,7 @@ namespace QuantLib {
 
     namespace detail {
         template<class I1, class I2, class I> class LogInterpolationImpl;
-        template<class I1, class I2, class I1, class I2> class LogMixedInterpolationImpl;
+        template<class I1, class I2, class IN1, class IN2> class LogMixedInterpolationImpl;
     }
 
     //! %log-linear interpolation between discrete points
@@ -322,7 +322,7 @@ namespace QuantLib {
             : public Interpolation::templateImpl<I1, I2> {
         public:
             LogMixedInterpolationImpl(const I1& xBegin, const I1& xEnd,
-                const I2& yBegin, size n,
+                const I2& yBegin, Size n,
                 const Interpolator1& factory1 = Interpolator1(),
                 const Interpolator2& factory2 = Interpolator2())
                 : Interpolation::templateImpl<I1, I2>(xBegin, xEnd, yBegin,
@@ -339,9 +339,9 @@ namespace QuantLib {
                     interpolation1_ = factory1.interpolate(this->xBegin_,
                         this->xEnd_,
                         logY_.begin());
-                    interpolation2_ = factory2.interpolate(this->xBegin_,
+                    interpolation2_ = factory2.interpolate(this->xBegin2_,
                         this->xEnd_,
-                        logY_.begin());
+                        logY_.begin()+n);
                 }
             void update() {
                     for (Size i = 0; i<logY_.size(); ++i) {
@@ -377,6 +377,7 @@ namespace QuantLib {
             std::vector<Real> logY_;
             Size n_;
             Interpolation interpolation1_, interpolation2_;
+            I1 xBegin2_;
         };
 
     }

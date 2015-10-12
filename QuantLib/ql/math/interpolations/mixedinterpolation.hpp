@@ -185,6 +185,7 @@ namespace QuantLib {
               n_(n) {
 
                 xBegin2_ = this->xBegin_+n;
+                yBegin2_ = this->yBegin_ + n;
 
                 QL_REQUIRE(xBegin2_<this->xEnd_,
                            "too large n (" << n << ") for " <<
@@ -193,9 +194,9 @@ namespace QuantLib {
                 interpolation1_ = factory1.interpolate(this->xBegin_,
                                                        this->xEnd_,
                                                        this->yBegin_);
-                interpolation2_ = factory2.interpolate(this->xBegin_,
+                interpolation2_ = factory2.interpolate(this->xBegin2_,
                                                        this->xEnd_,
-                                                       this->yBegin_);
+                                                       this->yBegin2_);                                                       
             }
             void update() {
                 interpolation1_.update();
@@ -225,7 +226,8 @@ namespace QuantLib {
             }
             Size switchIndex() { return n_; }
           private:
-            I1 xBegin2_;
+              I1 xBegin2_;
+              I2 yBegin2_;
             Size n_;
             Interpolation interpolation1_, interpolation2_;
         };
