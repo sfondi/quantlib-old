@@ -39,7 +39,8 @@ namespace QuantLib {
                       const boost::shared_ptr<OvernightIndex>& overnightIndex,
                       // exogenous discounting curve
                       const Handle<YieldTermStructure>& discountingCurve
-                                            = Handle<YieldTermStructure>());
+                                            = Handle<YieldTermStructure>(),
+                      const Frequency paymentFrequency = Annual );
         //! \name RateHelper interface
         //@{
         Real impliedQuote() const;
@@ -65,6 +66,8 @@ namespace QuantLib {
 
         Handle<YieldTermStructure> discountHandle_;
         RelinkableHandle<YieldTermStructure> discountRelinkableHandle_;
+
+        Frequency paymentFrequency_;
     };
 
     //! Rate helper for bootstrapping over Overnight Indexed Swap rates
