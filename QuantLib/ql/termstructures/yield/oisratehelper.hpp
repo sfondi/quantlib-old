@@ -40,7 +40,8 @@ namespace QuantLib {
                       // exogenous discounting curve
                       const Handle<YieldTermStructure>& discountingCurve
                                             = Handle<YieldTermStructure>(),
-                      const Frequency paymentFrequency = Annual );
+                      const Frequency paymentFrequency = Annual,
+                      const Handle<Quote>& spread = Handle<Quote>());
         //! \name RateHelper interface
         //@{
         Real impliedQuote() const;
@@ -68,6 +69,7 @@ namespace QuantLib {
         RelinkableHandle<YieldTermStructure> discountRelinkableHandle_;
 
         Frequency paymentFrequency_;
+        Handle<Quote> spread_;
     };
 
     //! Rate helper for bootstrapping over Overnight Indexed Swap rates
