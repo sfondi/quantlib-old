@@ -516,6 +516,12 @@
             <tensorRank>scalar</tensorRank>
             <description>fixed leg payment frequency: Annual, Semiannual.</description>
           </Parameter>
+          <Parameter name='Spread' exampleValue='0.0'>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>Overnight leg spread.</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>

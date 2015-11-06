@@ -203,6 +203,7 @@ namespace QuantLibAddin {
             const boost::shared_ptr<QuantLib::OvernightIndex>& overnightIndex,
             const QuantLib::Handle<QuantLib::YieldTermStructure>& discount,
             const QuantLib::Frequency paymentFrequency,
+            const QuantLib::Handle<QuantLib::Quote>& spread,
             bool permanent);
     };
 
