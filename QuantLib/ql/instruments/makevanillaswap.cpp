@@ -31,6 +31,7 @@
 #include <ql/currencies/asia.hpp>
 #include <ql/currencies/europe.hpp>
 #include <ql/currencies/oceania.hpp>
+#include <ql/time/calendars/jointcalendar.hpp>
 
 using boost::shared_ptr;
 
@@ -73,7 +74,7 @@ namespace QuantLib {
             // if the evaluation date is not a business day
             // then move to the next business day
             refDate = floatCalendar_.adjust(refDate);
-            Date spotDate = floatCalendar_.advance(refDate,
+            Date spotDate = iborIndex_->fixingCalendar().advance(refDate,
                                                    settlementDays_*Days);
             startDate = spotDate+forwardStart_;
             if (forwardStart_.length()<0)
@@ -252,7 +253,8 @@ namespace QuantLib {
 
     MakeVanillaSwap&
     MakeVanillaSwap::withFixedLegCalendar(const Calendar& cal) {
-        fixedCalendar_ = cal;
+        JointCalendar jointcal(iborIndex_->fixingCalendar(), cal, JoinHolidays);
+        fixedCalendar_ = jointcal;
         return *this;
     }
 
@@ -302,7 +304,8 @@ namespace QuantLib {
 
     MakeVanillaSwap&
     MakeVanillaSwap::withFloatingLegCalendar(const Calendar& cal) {
-        floatCalendar_ = cal;
+        JointCalendar jointcal(iborIndex_->fixingCalendar(), cal, JoinHolidays);
+        floatCalendar_ = jointcal;
         return *this;
     }
 
