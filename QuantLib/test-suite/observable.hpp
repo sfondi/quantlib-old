@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2009 StatPro Italia srl
+ Copyright (C) 2015 Klaus Spanderen
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -17,31 +17,22 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-/*! \file version.hpp
-    \brief Version number
-*/
+#ifndef quantlib_test_observer_hpp
+#define quantlib_test_observer_hpp
 
-#ifndef quantlib_version_hpp
-#define quantlib_version_hpp
+#include <boost/test/unit_test.hpp>
 
-#include <ql/qldefines.hpp>
+/* remember to document new and/or updated tests in the Doxygen
+   comment block of the corresponding class */
 
-/*! \addtogroup macros */
-/*! @{ */
+class ObservableTest {
+  public:
+    static void testObservableSettings();
+    static void testAsyncGarbagCollector();
+    static void testMultiThreadingGlobalSettings();
 
-//! version string
-#ifdef QL_DEBUG
-    #define QL_VERSION "1.7.1-debug"
-#else
-    #define QL_VERSION "1.7.1"
-#endif
-
-//! version hexadecimal number
-#define QL_HEX_VERSION 0x010701f0
-//! version string for output lib name
-#define QL_LIB_VERSION "1_7_1"
-
-/*! @}  */
+    static boost::unit_test_framework::test_suite* suite();
+};
 
 
 #endif
