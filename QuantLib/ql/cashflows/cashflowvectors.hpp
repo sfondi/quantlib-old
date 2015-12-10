@@ -67,7 +67,8 @@ namespace QuantLib {
                     const std::vector<Rate>& caps,
                     const std::vector<Rate>& floors,
                     bool isInArrears,
-                    bool isZero) {
+                    bool isZero,
+                    bool IndexedCoupon = false) {
 
         Size n = schedule.size()-1;
         QL_REQUIRE(!nominals.empty(), "no notional given");
@@ -122,15 +123,16 @@ namespace QuantLib {
                 if (detail::noOption(caps, floors, i))
                     leg.push_back(boost::shared_ptr<CashFlow>(new
                         FloatingCouponType(
-                            paymentDate,
-                            detail::get(nominals, i, 1.0),
-                            start, end,
-                            detail::get(fixingDays, i, index->fixingDays()),
-                            index,
-                            detail::get(gearings, i, 1.0),
-                            detail::get(spreads, i, 0.0),
-                            refStart, refEnd,
-                            paymentDayCounter, isInArrears)));
+                               paymentDate,
+                               detail::get(nominals, i, 1.0),
+                               start, end,
+                               detail::get(fixingDays, i, index->fixingDays()),
+                               index,
+                               detail::get(gearings, i, 1.0),
+                               detail::get(spreads, i, 0.0),
+                               refStart, refEnd,
+                               paymentDayCounter, isInArrears,
+                               IndexedCoupon)));
                 else {
                     leg.push_back(boost::shared_ptr<CashFlow>(new
                         CappedFlooredCouponType(

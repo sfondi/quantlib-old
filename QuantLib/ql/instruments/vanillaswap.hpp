@@ -79,7 +79,8 @@ namespace QuantLib {
             Spread spread,
             const DayCounter& floatingDayCount,
             boost::optional<BusinessDayConvention> paymentConvention =
-                                                                 boost::none);
+                                                                 boost::none,
+            bool IndexedCoupon = false);
         //! \name Inspectors
         //@{
         Type type() const;
@@ -125,6 +126,7 @@ namespace QuantLib {
         Spread spread_;
         DayCounter floatingDayCount_;
         BusinessDayConvention paymentConvention_;
+        bool IndexedCoupon_;
         // results
         mutable Rate fairRate_;
         mutable Spread fairSpread_;

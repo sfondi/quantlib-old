@@ -56,7 +56,8 @@ namespace QuantLib {
       fixedFirstDate_(Date()), fixedNextToLastDate_(Date()),
       floatFirstDate_(Date()), floatNextToLastDate_(Date()),
       floatSpread_(0.0),
-      floatDayCount_(index->dayCounter()) {}
+      floatDayCount_(index->dayCounter()),
+      IndexedCoupon_(false) {}
 
     MakeVanillaSwap::operator VanillaSwap() const {
         shared_ptr<VanillaSwap> swap = *this;
@@ -154,7 +155,8 @@ namespace QuantLib {
                              0.0, // fixed rate
                              fixedDayCount,
                              floatSchedule, iborIndex_,
-                             floatSpread_, floatDayCount_);
+                             floatSpread_, floatDayCount_,
+                             boost::none, IndexedCoupon_);
             if (engine_ == 0) {
                 Handle<YieldTermStructure> disc =
                                         iborIndex_->forwardingTermStructure();
@@ -176,7 +178,8 @@ namespace QuantLib {
                         fixedSchedule,
                         usedFixedRate, fixedDayCount,
                         floatSchedule,
-                        iborIndex_, floatSpread_, floatDayCount_));
+                        iborIndex_, floatSpread_, floatDayCount_,
+                        boost::none, IndexedCoupon_));
 
         if (engine_ == 0) {
             Handle<YieldTermStructure> disc =
@@ -348,6 +351,11 @@ namespace QuantLib {
 
     MakeVanillaSwap& MakeVanillaSwap::withFloatingLegSpread(Spread sp) {
         floatSpread_ = sp;
+        return *this;
+    }
+
+    MakeVanillaSwap& MakeVanillaSwap::withIndexedCoupon(bool IndexedCoupon) {
+        IndexedCoupon_ = IndexedCoupon;
         return *this;
     }
 

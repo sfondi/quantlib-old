@@ -82,6 +82,7 @@ namespace QuantLib {
                               const Handle<YieldTermStructure>& discountCurve);
         MakeVanillaSwap& withPricingEngine(
                               const boost::shared_ptr<PricingEngine>& engine);
+        MakeVanillaSwap& withIndexedCoupon(bool IndexedCoupon);
       private:
         Period swapTenor_;
         boost::shared_ptr<IborIndex> iborIndex_;
@@ -103,6 +104,7 @@ namespace QuantLib {
         Date floatFirstDate_, floatNextToLastDate_;
         Spread floatSpread_;
         DayCounter fixedDayCount_, floatDayCount_;
+        bool IndexedCoupon_;
 
         boost::shared_ptr<PricingEngine> engine_;
     };

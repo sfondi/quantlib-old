@@ -238,7 +238,8 @@ namespace QuantLib {
                        const Handle<YieldTermStructure>& discountingCurve
                                                = Handle<YieldTermStructure>(),
                        Pillar::Choice pillar = Pillar::LastRelevantDate,
-                       Date customPillarDate = Date());
+                       Date customPillarDate = Date(),
+                       bool IndexedCoupon = false);
         SwapRateHelper(const Handle<Quote>& rate,
                        const Period& tenor,
                        const Calendar& calendar,
@@ -255,7 +256,8 @@ namespace QuantLib {
                                             = Handle<YieldTermStructure>(),
                        Natural settlementDays = Null<Natural>(),
                        Pillar::Choice pillar = Pillar::LastRelevantDate,
-                       Date customPillarDate = Date());
+                       Date customPillarDate = Date(),
+                       bool IndexedCoupon = false);
         SwapRateHelper(Rate rate,
                        const boost::shared_ptr<SwapIndex>& swapIndex,
                        const Handle<Quote>& spread = Handle<Quote>(),
@@ -264,7 +266,8 @@ namespace QuantLib {
                        const Handle<YieldTermStructure>& discountingCurve
                                             = Handle<YieldTermStructure>(),
                        Pillar::Choice pillar = Pillar::LastRelevantDate,
-                       Date customPillarDate = Date());
+                       Date customPillarDate = Date(),
+                       bool IndexedCoupon = false);
         SwapRateHelper(Rate rate,
                        const Period& tenor,
                        const Calendar& calendar,
@@ -281,7 +284,8 @@ namespace QuantLib {
                                             = Handle<YieldTermStructure>(),
                        Natural settlementDays = Null<Natural>(),
                        Pillar::Choice pillar = Pillar::LastRelevantDate,
-                       Date customPillarDate = Date());
+                       Date customPillarDate = Date(),
+                       bool IndexedCoupon = false);
         //! \name RateHelper interface
         //@{
         Real impliedQuote() const;
@@ -313,6 +317,7 @@ namespace QuantLib {
         Period fwdStart_;
         Handle<YieldTermStructure> discountHandle_;
         RelinkableHandle<YieldTermStructure> discountRelinkableHandle_;
+        bool IndexedCoupon_;
     };
 
 

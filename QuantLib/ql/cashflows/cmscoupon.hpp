@@ -49,7 +49,8 @@ namespace QuantLib {
                   const Date& refPeriodStart = Date(),
                   const Date& refPeriodEnd = Date(),
                   const DayCounter& dayCounter = DayCounter(),
-                  bool isInArrears = false);
+                  bool isInArrears = false,
+                  bool IndexedCoupon = false);
         //! \name Inspectors
         //@{
         const boost::shared_ptr<SwapIndex>& swapIndex() const {
@@ -86,6 +87,7 @@ namespace QuantLib {
         CmsLeg& withFloors(const std::vector<Rate>& floors);
         CmsLeg& inArrears(bool flag = true);
         CmsLeg& withZeroPayments(bool flag = true);
+        CmsLeg& IndexedCoupon(bool IndexedCoupon = false);
         operator Leg() const;
       private:
         Schedule schedule_;
@@ -97,7 +99,7 @@ namespace QuantLib {
         std::vector<Real> gearings_;
         std::vector<Spread> spreads_;
         std::vector<Rate> caps_, floors_;
-        bool inArrears_, zeroPayments_;
+        bool inArrears_, zeroPayments_, IndexedCoupon_;
     };
 
 }

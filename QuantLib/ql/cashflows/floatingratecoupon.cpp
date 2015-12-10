@@ -41,13 +41,14 @@ namespace QuantLib {
                             const Date& refPeriodStart,
                             const Date& refPeriodEnd,
                             const DayCounter& dayCounter,
-                            bool isInArrears)
+                            bool isInArrears,
+                            bool IndexedCoupon)
     : Coupon(paymentDate, nominal,
              startDate, endDate, refPeriodStart, refPeriodEnd),
       index_(index), dayCounter_(dayCounter),
       fixingDays_(fixingDays==Null<Natural>() ? index->fixingDays() : fixingDays),
       gearing_(gearing), spread_(spread),
-      isInArrears_(isInArrears)
+      isInArrears_(isInArrears), IndexedCoupon_(IndexedCoupon)
     {
         QL_REQUIRE(gearing_!=0, "Null gearing not allowed");
 

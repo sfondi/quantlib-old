@@ -159,6 +159,7 @@ namespace QuantLibAddin {
             const QuantLib::Handle<QuantLib::YieldTermStructure>& discount,
             QuantLib::Pillar::Choice pillarChoice,
             QuantLib::Date customPillar,
+            bool IndexedCoupon,
             bool permanent)
     : RateHelper(properties, permanent) {
         libraryObject_ = shared_ptr<QuantLib::RateHelper>(new
@@ -166,7 +167,8 @@ namespace QuantLibAddin {
                                      swapIndex,
                                      spread, forwardStart, discount,
                                      pillarChoice,
-                                     customPillar
+                                     customPillar,
+                                     IndexedCoupon
                                      ));
         quoteName_ = f(properties->getSystemProperty("Rate"));
     }
@@ -186,6 +188,7 @@ namespace QuantLibAddin {
             const QuantLib::Handle<QuantLib::YieldTermStructure>& discount,
             QuantLib::Pillar::Choice pillarChoice,
             QuantLib::Date customPillar,
+            bool IndexedCoupon,
             bool permanent)
     : RateHelper(properties, permanent) {
         libraryObject_ = shared_ptr<QuantLib::RateHelper>(new
@@ -193,7 +196,8 @@ namespace QuantLibAddin {
                                      p, cal, fixFreq, fixConv, fixDC, ibor,
                                      spread, forwardStart, discount, settlementDays,
                                      pillarChoice,
-                                     customPillar
+                                     customPillar,
+                                     IndexedCoupon
                                      ));
         quoteName_ = f(properties->getSystemProperty("Rate"));
     }

@@ -41,12 +41,13 @@ namespace QuantLib {
                            const Date& refPeriodStart,
                            const Date& refPeriodEnd,
                            const DayCounter& dayCounter,
-                           bool isInArrears)
+                           bool isInArrears,
+                           bool IndexedCoupon)
     : FloatingRateCoupon(paymentDate, nominal, startDate, endDate,
                          fixingDays, iborIndex, gearing, spread,
                          refPeriodStart, refPeriodEnd,
                          dayCounter, isInArrears),
-      iborIndex_(iborIndex) {
+      iborIndex_(iborIndex), IndexedCoupon_(IndexedCoupon) {
 
         fixingDate_ = fixingDate();
 
@@ -59,7 +60,7 @@ namespace QuantLib {
         #ifdef QL_USE_INDEXED_COUPON
         fixingEndDate_ = index_->maturityDate(fixingValueDate_);
         #else
-        if (isInArrears_)
+        if (isInArrears_||IndexedCoupon_)
             fixingEndDate_ = index_->maturityDate(fixingValueDate_);
         else { // par coupon approximation
             Date nextFixingDate = fixingCalendar.advance(
@@ -204,6 +205,11 @@ namespace QuantLib {
         return *this;
     }
 
+    IborLeg& IborLeg::withIndexedCoupon(bool IndexedCoupon) {
+        IndexedCoupon_ = IndexedCoupon;
+        return *this;
+    }
+
     IborLeg& IborLeg::inArrears(bool flag) {
         inArrears_ = flag;
         return *this;
@@ -219,7 +225,7 @@ namespace QuantLib {
         Leg leg = FloatingLeg<IborIndex, IborCoupon, CappedFlooredIborCoupon>(
                          schedule_, notionals_, index_, paymentDayCounter_,
                          paymentAdjustment_, fixingDays_, gearings_, spreads_,
-                         caps_, floors_, inArrears_, zeroPayments_);
+                         caps_, floors_, inArrears_, zeroPayments_, IndexedCoupon_);
 
         if (caps_.empty() && floors_.empty() && !inArrears_) {
             shared_ptr<IborCouponPricer> pricer(new BlackIborCouponPricer);
