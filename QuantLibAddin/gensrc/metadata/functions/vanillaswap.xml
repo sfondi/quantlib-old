@@ -99,6 +99,11 @@
             <tensorRank>scalar</tensorRank>
             <description>Payment dates' business day convention.</description>
           </Parameter>
+          <Parameter name='IndexedCoupon' default='FALSE'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE for indexed coupon, FALSE for par coupon.</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
@@ -154,6 +159,11 @@
             <tensorRank>scalar</tensorRank>
             <description>DiscountSwapEngine object ID.</description>
           </Parameter>
+          <Parameter name='IndexedCoupon' default='FALSE'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE for indexed coupon, FALSE for par coupon.</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
@@ -203,6 +213,11 @@
             <type>QuantLib::PricingEngine</type>
             <tensorRank>scalar</tensorRank>
             <description>DiscountSwapEngine object ID.</description>
+          </Parameter>
+          <Parameter name='IndexedCoupon' default='FALSE'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE for indexed coupon, FALSE for par coupon.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

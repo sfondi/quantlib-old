@@ -47,6 +47,7 @@ namespace QuantLibAddin {
             QuantLib::Spread floatingLegSpread,
             const QuantLib::DayCounter& floatDayCounter,
             QuantLib::BusinessDayConvention paymentConvention,
+            bool IndexedCoupon,
             bool permanent);
         VanillaSwap( // MakeVanillaSwap
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
@@ -58,6 +59,7 @@ namespace QuantLibAddin {
             const QuantLib::DayCounter& fixLegDayCounter,
             QuantLib::Spread floatingLegSpread,
             const boost::shared_ptr<QuantLib::PricingEngine>& engine,
+            bool IndexedCoupon,
             bool permanent);
         VanillaSwap( // MakeIMMSwap
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
@@ -68,6 +70,7 @@ namespace QuantLibAddin {
             const QuantLib::DayCounter& fixLegDayCounter,
             QuantLib::Spread floatingLegSpread,
             const boost::shared_ptr<QuantLib::PricingEngine>& engine,
+            bool IndexedCoupon,
             bool permanent);
         VanillaSwap( // SwapIndex->underlyingSwap()
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,

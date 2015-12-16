@@ -313,6 +313,11 @@
             <tensorRank>scalar</tensorRank>
             <description>Custom Pillar Date.</description>
           </Parameter>
+          <Parameter name='IndexedCoupon' default='FALSE'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE for indexed coupon, FALSE for par coupon.</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
@@ -394,6 +399,11 @@
             <type>QuantLib::Date</type>
             <tensorRank>scalar</tensorRank>
             <description>Custom Pillar Date.</description>
+          </Parameter>
+          <Parameter name='IndexedCoupon' default='FALSE'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE for indexed coupon, FALSE for par coupon.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

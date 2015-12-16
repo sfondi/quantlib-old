@@ -50,6 +50,7 @@ namespace QuantLibAddin {
                              QuantLib::Spread spread,
                              const QuantLib::DayCounter& floatDayCounter,
                              QuantLib::BusinessDayConvention paymentConvention,
+                             bool IndexedCoupon,
                              bool permanent)
     : Swap(properties, permanent)
     {
@@ -63,7 +64,8 @@ namespace QuantLibAddin {
                                   index,
                                   spread,
                                   floatDayCounter,
-                                  paymentConvention));
+                                  paymentConvention,
+                                  IndexedCoupon));
     }
 
     // MakeVanillaSwap
@@ -76,6 +78,7 @@ namespace QuantLibAddin {
                              const QuantLib::DayCounter& fixDayCounter,
                              QuantLib::Spread floatingLegSpread,
                              const shared_ptr<QuantLib::PricingEngine>& engine,
+                             bool IndexedCoupon,
                              bool permanent)
     : Swap(properties, permanent)
     {
@@ -84,6 +87,7 @@ namespace QuantLibAddin {
                                 .withFixedLegDayCount(fixDayCounter)
                                 .withFloatingLegSpread(floatingLegSpread)
                                 .withPricingEngine(engine)
+                                .withIndexedCoupon(IndexedCoupon)
                                 .operator shared_ptr<QuantLib::VanillaSwap>();
     }
 
@@ -95,6 +99,7 @@ namespace QuantLibAddin {
                              const QuantLib::DayCounter& fixDayCounter,
                              QuantLib::Spread floatingLegSpread,
                              const shared_ptr<QuantLib::PricingEngine>& engine,
+                             bool IndexedCoupon,
                              bool permanent)
     : Swap(properties, permanent)
     {
@@ -115,6 +120,7 @@ namespace QuantLibAddin {
                             .withFixedLegDayCount(fixDayCounter)
                             .withFloatingLegSpread(floatingLegSpread)
                             .withPricingEngine(engine)
+                            .withIndexedCoupon(IndexedCoupon)
                             .operator shared_ptr<QuantLib::VanillaSwap>();
     }
 

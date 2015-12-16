@@ -55,7 +55,8 @@ namespace QuantLib {
                            const Date& refPeriodStart = Date(),
                            const Date& refPeriodEnd = Date(),
                            const DayCounter& dayCounter = DayCounter(),
-                           bool isInArrears = false);
+                           bool isInArrears = false,
+                           bool IndexedCoupon = false);
 
         //! \name CashFlow interface
         //@{
@@ -90,6 +91,8 @@ namespace QuantLib {
         virtual Rate adjustedFixing() const;
         //! whether or not the coupon fixes in arrears
         bool isInArrears() const { return isInArrears_; }
+        //! whether or not the coupon end date is the index end date
+        bool IndexedCoupon() const { return IndexedCoupon_; }
         //@}
 
         //! \name Observer interface
@@ -113,6 +116,7 @@ namespace QuantLib {
         Real gearing_;
         Spread spread_;
         bool isInArrears_;
+        bool IndexedCoupon_;
         boost::shared_ptr<FloatingRateCouponPricer> pricer_;
     };
 

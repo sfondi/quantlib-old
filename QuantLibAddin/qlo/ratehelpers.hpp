@@ -141,6 +141,7 @@ namespace QuantLibAddin {
             const QuantLib::Handle<QuantLib::YieldTermStructure>& discount,
             QuantLib::Pillar::Choice pillarChoice,
             QuantLib::Date customPillar,
+            bool IndexedCoupon,
             bool permanent);
         SwapRateHelper(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
@@ -157,6 +158,7 @@ namespace QuantLibAddin {
             const QuantLib::Handle<QuantLib::YieldTermStructure>& discount,
             QuantLib::Pillar::Choice pillarChoice,
             QuantLib::Date customPillar,
+            bool IndexedCoupon,
             bool permanent);
      };
 

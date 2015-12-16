@@ -31,6 +31,7 @@
 #include <ql/quote.hpp>
 #include <ql/currency.hpp>
 #include <ql/indexes/swapindex.hpp>
+#include <ql/cashflows/floatingratecoupon.hpp>
 #ifdef QL_USE_INDEXED_COUPON
     #include <ql/cashflows/floatingratecoupon.hpp>
 #endif
@@ -777,7 +778,8 @@ namespace QuantLib {
                                    const Period& fwdStart,
                                    const Handle<YieldTermStructure>& discount,
                                    Pillar::Choice pillarChoice,
-                                   Date customPillarDate)
+                                   Date customPillarDate,
+                                   bool IndexedCoupon)
     : RelativeDateRateHelper(rate),
       settlementDays_(swapIndex->fixingDays()),
       tenor_(swapIndex->tenor()), calendar_(swapIndex->fixingCalendar()),
@@ -785,7 +787,8 @@ namespace QuantLib {
       fixedFrequency_(swapIndex->fixedLegTenor().frequency()),
       fixedDayCount_(swapIndex->dayCounter()),
       spread_(spread),
-      fwdStart_(fwdStart), discountHandle_(discount), pillarChoice_(pillarChoice){
+      fwdStart_(fwdStart), discountHandle_(discount),
+      pillarChoice_(pillarChoice), IndexedCoupon_(IndexedCoupon){
         // take fixing into account
         iborIndex_ = swapIndex->iborIndex()->clone(termStructureHandle_);
         // We want to be notified of changes of fixings, but we don't
@@ -813,7 +816,8 @@ namespace QuantLib {
                                    const Handle<YieldTermStructure>& discount,
                                    Natural settlementDays,
                                    Pillar::Choice pillarChoice,
-                                   Date customPillarDate)
+                                   Date customPillarDate,
+                                   bool IndexedCoupon)
     : RelativeDateRateHelper(rate),
       settlementDays_(settlementDays),
       tenor_(tenor), calendar_(calendar),
@@ -821,7 +825,8 @@ namespace QuantLib {
       fixedFrequency_(fixedFrequency),
       fixedDayCount_(fixedDayCount),
       spread_(spread),
-      fwdStart_(fwdStart), discountHandle_(discount), pillarChoice_(pillarChoice) {
+      fwdStart_(fwdStart), discountHandle_(discount),
+      pillarChoice_(pillarChoice), IndexedCoupon_(IndexedCoupon) {
 
         if (settlementDays_==Null<Natural>())
             settlementDays_ = iborIndex->fixingDays();
@@ -847,7 +852,8 @@ namespace QuantLib {
                                    const Period& fwdStart,
                                    const Handle<YieldTermStructure>& discount,
                                    Pillar::Choice pillarChoice,
-                                   Date customPillarDate)
+                                   Date customPillarDate,
+                                   bool IndexedCoupon)
     : RelativeDateRateHelper(rate),
       settlementDays_(swapIndex->fixingDays()),
       tenor_(swapIndex->tenor()), calendar_(swapIndex->fixingCalendar()),
@@ -855,7 +861,8 @@ namespace QuantLib {
       fixedFrequency_(swapIndex->fixedLegTenor().frequency()),
       fixedDayCount_(swapIndex->dayCounter()),
       spread_(spread),
-      fwdStart_(fwdStart), discountHandle_(discount), pillarChoice_(pillarChoice) {
+      fwdStart_(fwdStart), discountHandle_(discount),
+      pillarChoice_(pillarChoice), IndexedCoupon_(IndexedCoupon) {
         // take fixing into account
         iborIndex_ = swapIndex->iborIndex()->clone(termStructureHandle_);
         // We want to be notified of changes of fixings, but we don't
@@ -883,7 +890,8 @@ namespace QuantLib {
                                    const Handle<YieldTermStructure>& discount,
                                    Natural settlementDays,
                                    Pillar::Choice pillarChoice,
-                                   Date customPillarDate)
+                                   Date customPillarDate,
+                                   bool IndexedCoupon)
     : RelativeDateRateHelper(rate),
       settlementDays_(settlementDays),
       tenor_(tenor), calendar_(calendar),
@@ -891,7 +899,8 @@ namespace QuantLib {
       fixedFrequency_(fixedFrequency),
       fixedDayCount_(fixedDayCount),
       spread_(spread),
-      fwdStart_(fwdStart), discountHandle_(discount), pillarChoice_(pillarChoice) {
+      fwdStart_(fwdStart), discountHandle_(discount),
+      pillarChoice_(pillarChoice), IndexedCoupon_(IndexedCoupon) {
 
         if (settlementDays_==Null<Natural>())
             settlementDays_ = iborIndex->fixingDays();
@@ -925,7 +934,8 @@ namespace QuantLib {
             .withFixedLegConvention(fixedConvention_)
             .withFixedLegTerminationDateConvention(fixedConvention_)
             .withFixedLegCalendar(calendar_)
-            .withFloatingLegCalendar(calendar_);
+            .withFloatingLegCalendar(calendar_)
+            .withIndexedCoupon(IndexedCoupon_);
 
         earliestDate_ = swap_->startDate();
 
@@ -942,6 +952,15 @@ namespace QuantLib {
         Date endValueDate = iborIndex_->maturityDate(fixingValueDate);
         latestRelevantDate_ = std::max(latestRelevantDate_, endValueDate);
         #endif
+
+        if (IndexedCoupon_) {
+            shared_ptr<FloatingRateCoupon> lastCoupon =
+                boost::dynamic_pointer_cast<FloatingRateCoupon>(
+                swap_->floatingLeg().back());
+            Date fixingValueDate = iborIndex_->valueDate(lastCoupon->fixingDate());
+            Date endValueDate = iborIndex_->maturityDate(fixingValueDate);
+            latestRelevantDate_ = std::max(latestRelevantDate_, endValueDate);
+        }
 
         switch (pillarChoice_) {
           case Pillar::MaturityDate:

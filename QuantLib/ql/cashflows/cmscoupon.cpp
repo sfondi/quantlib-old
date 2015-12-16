@@ -36,11 +36,12 @@ namespace QuantLib {
                          const Date& refPeriodStart,
                          const Date& refPeriodEnd,
                          const DayCounter& dayCounter,
-                         bool isInArrears)
+                         bool isInArrears,
+                         bool IndexedCoupon)
     : FloatingRateCoupon(paymentDate, nominal, startDate, endDate,
                          fixingDays, swapIndex, gearing, spread,
                          refPeriodStart, refPeriodEnd,
-                         dayCounter, isInArrears),
+                         dayCounter, isInArrears, IndexedCoupon),
       swapIndex_(swapIndex) {}
 
     void CmsCoupon::accept(AcyclicVisitor& v) {
@@ -57,7 +58,8 @@ namespace QuantLib {
                    const boost::shared_ptr<SwapIndex>& swapIndex)
     : schedule_(schedule), swapIndex_(swapIndex),
       paymentAdjustment_(Following),
-      inArrears_(false), zeroPayments_(false) {}
+      inArrears_(false), zeroPayments_(false),
+      IndexedCoupon_(false) {}
 
     CmsLeg& CmsLeg::withNotionals(Real notional) {
         notionals_ = std::vector<Real>(1, notional);
@@ -139,11 +141,16 @@ namespace QuantLib {
         return *this;
     }
 
+    CmsLeg& CmsLeg::IndexedCoupon(bool IndexedCoupon) {
+        IndexedCoupon_ = IndexedCoupon;
+        return *this;
+    }
+
     CmsLeg::operator Leg() const {
         return FloatingLeg<SwapIndex, CmsCoupon, CappedFlooredCmsCoupon>(
                          schedule_, notionals_, swapIndex_, paymentDayCounter_,
                          paymentAdjustment_, fixingDays_, gearings_, spreads_,
-                         caps_, floors_, inArrears_, zeroPayments_);
+                         caps_, floors_, inArrears_, zeroPayments_, IndexedCoupon_);
    }
 
 }

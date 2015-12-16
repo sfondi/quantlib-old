@@ -47,7 +47,8 @@ namespace QuantLib {
                    const Date& refPeriodStart = Date(),
                    const Date& refPeriodEnd = Date(),
                    const DayCounter& dayCounter = DayCounter(),
-                   bool isInArrears = false);
+                   bool isInArrears = false,
+                   bool IndexedCoupon = false);
         //! \name Inspectors
         //@{
         const boost::shared_ptr<IborIndex>& iborIndex() const {
@@ -67,6 +68,7 @@ namespace QuantLib {
         boost::shared_ptr<IborIndex> iborIndex_;
         Date fixingDate_, fixingValueDate_, fixingEndDate_;
         Time spanningTime_;
+        bool IndexedCoupon_;
     };
 
 
@@ -89,6 +91,7 @@ namespace QuantLib {
         IborLeg& withCaps(const std::vector<Rate>& caps);
         IborLeg& withFloors(Rate floor);
         IborLeg& withFloors(const std::vector<Rate>& floors);
+        IborLeg& withIndexedCoupon(bool IndexedCoupon = false);
         IborLeg& inArrears(bool flag = true);
         IborLeg& withZeroPayments(bool flag = true);
         operator Leg() const;
@@ -102,7 +105,7 @@ namespace QuantLib {
         std::vector<Real> gearings_;
         std::vector<Spread> spreads_;
         std::vector<Rate> caps_, floors_;
-        bool inArrears_, zeroPayments_;
+        bool inArrears_, zeroPayments_, IndexedCoupon_;
     };
 
 }

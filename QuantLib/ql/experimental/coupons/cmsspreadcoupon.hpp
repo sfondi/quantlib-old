@@ -50,7 +50,8 @@ namespace QuantLib {
                   const Date& refPeriodStart = Date(),
                   const Date& refPeriodEnd = Date(),
                   const DayCounter& dayCounter = DayCounter(),
-                  bool isInArrears = false);
+                  bool isInArrears = false,
+                  bool IndexedCoupon = false);
         //! \name Inspectors
         //@{
         const boost::shared_ptr<SwapSpreadIndex>& swapSpreadIndex() const {
@@ -81,11 +82,12 @@ namespace QuantLib {
                   const Date& refPeriodStart = Date(),
                   const Date& refPeriodEnd = Date(),
                   const DayCounter& dayCounter = DayCounter(),
-                  bool isInArrears = false)
+                  bool isInArrears = false,
+                  bool IndexedCoupon = false)
         : CappedFlooredCoupon(boost::shared_ptr<FloatingRateCoupon>(new
             CmsSpreadCoupon(paymentDate, nominal, startDate, endDate, fixingDays,
                       index, gearing, spread, refPeriodStart, refPeriodEnd,
-                      dayCounter, isInArrears)), cap, floor) {}
+                      dayCounter, isInArrears, IndexedCoupon)), cap, floor) {}
 
         virtual void accept(AcyclicVisitor& v) {
             Visitor<CappedFlooredCmsSpreadCoupon>* v1 =
@@ -118,6 +120,7 @@ namespace QuantLib {
         CmsSpreadLeg& withFloors(const std::vector<Rate>& floors);
         CmsSpreadLeg& inArrears(bool flag = true);
         CmsSpreadLeg& withZeroPayments(bool flag = true);
+        CmsSpreadLeg& IndexedCoupon(bool IndexedCoupon = false);
         operator Leg() const;
       private:
         Schedule schedule_;
@@ -129,7 +132,7 @@ namespace QuantLib {
         std::vector<Real> gearings_;
         std::vector<Spread> spreads_;
         std::vector<Rate> caps_, floors_;
-        bool inArrears_, zeroPayments_;
+        bool inArrears_, zeroPayments_, IndexedCoupon_;
     };
 
 
