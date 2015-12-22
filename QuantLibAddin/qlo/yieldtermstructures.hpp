@@ -128,7 +128,11 @@ namespace QuantLibAddin {
                             MonotonicParabolic,
                             MonotonicLogParabolic,
                             MixedLinearCubicNaturalSpline,
-                            LogMixedLinearCubicNaturalSpline
+                            LogMixedLinearCubicNaturalSpline,
+                            MixedLinearMonotonicCubicNaturalSpline,
+                            LogMixedLinearMonotonicCubicNaturalSpline,
+                            MixedLinearKrugerCubic,
+                            LogMixedLinearKrugerCubic                          
         };
         InterpolatedYieldCurve(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
