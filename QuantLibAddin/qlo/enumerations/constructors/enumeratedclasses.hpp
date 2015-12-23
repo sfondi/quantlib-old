@@ -166,6 +166,14 @@ namespace QuantLibAddin {
             ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin, QuantLib::Size n);
     boost::shared_ptr<QuantLib::Interpolation> LogMixedLinearCubicNaturalSpline_Interpolation(
             ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin, QuantLib::Size n);
+    boost::shared_ptr<QuantLib::Interpolation> MixedLinearMonotonicCubicNaturalSpline_Interpolation(
+            ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin, QuantLib::Size n);
+    boost::shared_ptr<QuantLib::Interpolation> LogMixedLinearMonotonicCubicNaturalSpline_Interpolation(
+            ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin, QuantLib::Size n);
+    boost::shared_ptr<QuantLib::Interpolation> MixedLinearKrugerCubic_Interpolation(
+            ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin, QuantLib::Size n);
+    boost::shared_ptr<QuantLib::Interpolation> LogMixedLinearKrugerCubic_Interpolation(
+            ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin, QuantLib::Size n);
     boost::shared_ptr<QuantLib::Interpolation> ABCD_Interpolation(
             ObjectHandler::dbl_itr& xBegin, ObjectHandler::dbl_itr& xEnd, ObjectHandler::dbl_itr& yBegin);
 

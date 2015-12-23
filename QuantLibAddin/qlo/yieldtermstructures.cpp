@@ -226,6 +226,54 @@ namespace QuantLibAddin {
                     InterpolatedDiscountCurve<QuantLib::LogCubic>(
                         dates, data, dayCounter, calendar, jumps, jumpDates,
                         QuantLib::LogCubic(CubicInterpolation::Parabolic, true)));
+            } else if (interpolatorID_ == "MIXEDLINEARCUBICNATURALSPLINE") {
+                libraryObject_ = shared_ptr<QuantLib::Extrapolator>(new
+                    InterpolatedZeroCurve<QuantLib::MixedLinearCubic>(
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
+                        QuantLib::MixedLinearCubic(n,
+                                                   CubicInterpolation::Spline, false,
+                                                   CubicInterpolation::SecondDerivative, 0.0,
+                                                   CubicInterpolation::SecondDerivative, 0.0)));
+            } else if (interpolatorID_ == "LOGMIXEDLINEARCUBICNATURALSPLINE") {
+                libraryObject_ = shared_ptr<QuantLib::Extrapolator>(new
+                    InterpolatedZeroCurve<QuantLib::LogMixedLinearCubic>(
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
+                        QuantLib::LogMixedLinearCubic(n,
+                                                      CubicInterpolation::Spline, false,
+                                                      CubicInterpolation::SecondDerivative, 0.0,
+                                                      CubicInterpolation::SecondDerivative, 0.0)));
+            } else if (interpolatorID_ == "MIXEDLINEARMONOTONICCUBICNATURALSPLINE") {
+                libraryObject_ = shared_ptr<QuantLib::Extrapolator>(new
+                    InterpolatedZeroCurve<QuantLib::MixedLinearCubic>(
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
+                        QuantLib::MixedLinearCubic(n,
+                                                   CubicInterpolation::Spline, true,
+                                                   CubicInterpolation::SecondDerivative, 0.0,
+                                                   CubicInterpolation::SecondDerivative, 0.0)));
+            } else if (interpolatorID_ == "LOGMIXEDLINEARMONOTONICCUBICNATURALSPLINE") {
+                libraryObject_ = shared_ptr<QuantLib::Extrapolator>(new
+                    InterpolatedZeroCurve<QuantLib::LogMixedLinearCubic>(
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
+                        QuantLib::LogMixedLinearCubic(n,
+                                                      CubicInterpolation::Spline, true,
+                                                      CubicInterpolation::SecondDerivative, 0.0,
+                                                      CubicInterpolation::SecondDerivative, 0.0)));
+            } else if (interpolatorID_ == "MIXEDLINEARKRUGERCUBIC") {
+                libraryObject_ = shared_ptr<QuantLib::Extrapolator>(new
+                    InterpolatedZeroCurve<QuantLib::MixedLinearCubic>(
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
+                        QuantLib::MixedLinearCubic(n,
+                                                   CubicInterpolation::Kruger, false,
+                                                   CubicInterpolation::SecondDerivative, 0.0,
+                                                   CubicInterpolation::SecondDerivative, 0.0)));
+            } else if (interpolatorID_ == "LOGMIXEDLINEARKRUGERCUBIC") {
+                libraryObject_ = shared_ptr<QuantLib::Extrapolator>(new
+                    InterpolatedZeroCurve<QuantLib::LogMixedLinearCubic>(
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
+                        QuantLib::LogMixedLinearCubic(n,
+                                                      CubicInterpolation::Kruger, false,
+                                                      CubicInterpolation::SecondDerivative, 0.0,
+                                                      CubicInterpolation::SecondDerivative, 0.0)));
             } else
                 QL_FAIL("unknown interpolatorID: " << interpolatorID_);
         } else if (traitsID_=="ZEROYIELD") {
@@ -317,20 +365,52 @@ namespace QuantLibAddin {
                 libraryObject_ = shared_ptr<QuantLib::Extrapolator>(new
                     InterpolatedZeroCurve<QuantLib::MixedLinearCubic>(
                         dates, data, dayCounter, calendar, jumps, jumpDates,
-                        QuantLib::MixedLinearCubic(
-                                            n,
-                                            CubicInterpolation::Spline, false,
-                                            CubicInterpolation::SecondDerivative, 0.0,
-                                            CubicInterpolation::SecondDerivative, 0.0)));
+                        QuantLib::MixedLinearCubic(n,
+                                                   CubicInterpolation::Spline, false,
+                                                   CubicInterpolation::SecondDerivative, 0.0,
+                                                   CubicInterpolation::SecondDerivative, 0.0)));
             } else if (interpolatorID_ == "LOGMIXEDLINEARCUBICNATURALSPLINE") {
                 libraryObject_ = shared_ptr<QuantLib::Extrapolator>(new
                     InterpolatedZeroCurve<QuantLib::LogMixedLinearCubic>(
                         dates, data, dayCounter, calendar, jumps, jumpDates,
-                        QuantLib::LogMixedLinearCubic(
-                                            n,
-                                            CubicInterpolation::Spline, false,
-                                            CubicInterpolation::SecondDerivative, 0.0,
-                                            CubicInterpolation::SecondDerivative, 0.0)));
+                        QuantLib::LogMixedLinearCubic(n,
+                                                      CubicInterpolation::Spline, false,
+                                                      CubicInterpolation::SecondDerivative, 0.0,
+                                                      CubicInterpolation::SecondDerivative, 0.0)));
+            } else if (interpolatorID_ == "MIXEDLINEARMONOTONICCUBICNATURALSPLINE") {
+                libraryObject_ = shared_ptr<QuantLib::Extrapolator>(new
+                    InterpolatedZeroCurve<QuantLib::MixedLinearCubic>(
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
+                        QuantLib::MixedLinearCubic(n,
+                                                   CubicInterpolation::Spline, true,
+                                                   CubicInterpolation::SecondDerivative, 0.0,
+                                                   CubicInterpolation::SecondDerivative, 0.0)));
+            } else if (interpolatorID_ == "LOGMIXEDLINEARMONOTONICCUBICNATURALSPLINE") {
+                libraryObject_ = shared_ptr<QuantLib::Extrapolator>(new
+                    InterpolatedZeroCurve<QuantLib::LogMixedLinearCubic>(
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
+                        QuantLib::LogMixedLinearCubic(n,
+                                                      CubicInterpolation::Spline, true,
+                                                      CubicInterpolation::SecondDerivative, 0.0,
+                                                      CubicInterpolation::SecondDerivative, 0.0)));
+            }
+            else if (interpolatorID_ == "MIXEDLINEARKRUGERCUBIC") {
+                libraryObject_ = shared_ptr<QuantLib::Extrapolator>(new
+                    InterpolatedZeroCurve<QuantLib::MixedLinearCubic>(
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
+                        QuantLib::MixedLinearCubic(n,
+                                                   CubicInterpolation::Kruger, false,
+                                                   CubicInterpolation::SecondDerivative, 0.0,
+                                                   CubicInterpolation::SecondDerivative, 0.0)));
+            }
+            else if (interpolatorID_ == "LOGMIXEDLINEARKRUGERCUBIC") {
+                libraryObject_ = shared_ptr<QuantLib::Extrapolator>(new
+                    InterpolatedZeroCurve<QuantLib::LogMixedLinearCubic>(
+                        dates, data, dayCounter, calendar, jumps, jumpDates,
+                        QuantLib::LogMixedLinearCubic(n,
+                                                      CubicInterpolation::Kruger, false,
+                                                      CubicInterpolation::SecondDerivative, 0.0,
+                                                      CubicInterpolation::SecondDerivative, 0.0)));
             } else
                 QL_FAIL("unknown interpolatorID: " << interpolatorID_);
         } else if (traitsID_=="FORWARDRATE") {
@@ -463,6 +543,14 @@ namespace QuantLibAddin {
                 return boost::dynamic_pointer_cast<InterpolatedDiscountCurve<QuantLib::MixedLinearCubic> >(libraryObject_)->NAME(); \
             } else if (interpolatorID_=="LOGMIXEDLINEARCUBICNATURALSPLINE") { \
                 return boost::dynamic_pointer_cast<InterpolatedDiscountCurve<QuantLib::LogMixedLinearCubic> >(libraryObject_)->NAME(); \
+            } else if (interpolatorID_=="MIXEDLINEARMONOTONICCUBICNATURALSPLINE") { \
+                return boost::dynamic_pointer_cast<InterpolatedDiscountCurve<QuantLib::MixedLinearCubic> >(libraryObject_)->NAME(); \
+            } else if (interpolatorID_=="LOGMIXEDLINEARMONOTONICCUBICNATURALSPLINE") { \
+                return boost::dynamic_pointer_cast<InterpolatedDiscountCurve<QuantLib::LogMixedLinearCubic> >(libraryObject_)->NAME(); \
+            } else if (interpolatorID_=="MIXEDLINEARKRUGERCUBIC") { \
+                return boost::dynamic_pointer_cast<InterpolatedDiscountCurve<QuantLib::MixedLinearCubic> >(libraryObject_)->NAME(); \
+            } else if (interpolatorID_=="LOGMIXEDLINEARKRUGERCUBIC") { \
+                return boost::dynamic_pointer_cast<InterpolatedDiscountCurve<QuantLib::LogMixedLinearCubic> >(libraryObject_)->NAME(); \
             } else \
                 QL_FAIL("unknown interpolatorID: " << interpolatorID_); \
         } else if (traitsID_=="ZEROYIELD") { \
@@ -501,6 +589,14 @@ namespace QuantLibAddin {
             } else if (interpolatorID_=="MIXEDLINEARCUBICNATURALSPLINE") { \
                 return boost::dynamic_pointer_cast<InterpolatedZeroCurve<QuantLib::MixedLinearCubic> >(libraryObject_)->NAME(); \
             } else if (interpolatorID_=="LOGMIXEDLINEARCUBICNATURALSPLINE") { \
+                return boost::dynamic_pointer_cast<InterpolatedZeroCurve<QuantLib::LogMixedLinearCubic> >(libraryObject_)->NAME(); \
+            } else if (interpolatorID_=="MIXEDLINEARMONOTONICCUBICNATURALSPLINE") { \
+                return boost::dynamic_pointer_cast<InterpolatedZeroCurve<QuantLib::MixedLinearCubic> >(libraryObject_)->NAME(); \
+            } else if (interpolatorID_=="LOGMIXEDLINEARMONOTONICCUBICNATURALSPLINE") { \
+                return boost::dynamic_pointer_cast<InterpolatedZeroCurve<QuantLib::LogMixedLinearCubic> >(libraryObject_)->NAME(); \
+            } else if (interpolatorID_=="MIXEDLINEARKRUGERCUBIC") { \
+                return boost::dynamic_pointer_cast<InterpolatedZeroCurve<QuantLib::MixedLinearCubic> >(libraryObject_)->NAME(); \
+            } else if (interpolatorID_=="LOGMIXEDLINEARKRUGERCUBIC") { \
                 return boost::dynamic_pointer_cast<InterpolatedZeroCurve<QuantLib::LogMixedLinearCubic> >(libraryObject_)->NAME(); \
             } else \
                 QL_FAIL("unknown interpolatorID: " << interpolatorID_); \
@@ -647,6 +743,18 @@ namespace QuantLibAddin {
                 break;
             case InterpolatedYieldCurve::LogMixedLinearCubicNaturalSpline:
                 out << "LogMixedLinearCubicNaturalSpline>";
+                break;
+            case InterpolatedYieldCurve::MixedLinearMonotonicCubicNaturalSpline:
+                out << "MixedLinearMonotonicCubicNaturalSpline>";
+                break;
+            case InterpolatedYieldCurve::LogMixedLinearMonotonicCubicNaturalSpline:
+                out << "LogMixedLinearMonotonicCubicNaturalSpline>";
+                break;
+            case InterpolatedYieldCurve::MixedLinearKrugerCubic:
+                out << "MixedLinearKrugerCubic>";
+                break;
+            case InterpolatedYieldCurve::LogMixedLinearKrugerCubic:
+                out << "LogMixedLinearKrugerCubic>";
                 break;
             default:
                 OH_FAIL("Unknown value for enumeration QuantLibAddin::InterpolatedYieldCurve::Interpolator");

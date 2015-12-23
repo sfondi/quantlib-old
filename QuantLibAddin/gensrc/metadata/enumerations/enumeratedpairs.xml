@@ -113,6 +113,28 @@
           <value>DISCOUNT_LogMixedLinearCubicNaturalSpline_PiecewiseYieldCurve</value>
         </EnumeratedPair>
 
+        <EnumeratedPair>
+          <id1>Discount</id1>
+          <id2>MixedLinearMonotonicCubicNaturalSpline</id2>
+          <value>DISCOUNT_MixedLinearMonotonicCubicNaturalSpline_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>Discount</id1>
+          <id2>LogMixedLinearMonotonicCubicNaturalSpline</id2>
+          <value>DISCOUNT_LogMixedLinearMonotonicCubicNaturalSpline_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+
+        <EnumeratedPair>
+          <id1>Discount</id1>
+          <id2>MixedLinearKrugerCubic</id2>
+          <value>DISCOUNT_MixedLinearKrugerCubic_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>Discount</id1>
+          <id2>LogMixedLinearKrugerCubic</id2>
+          <value>DISCOUNT_LogMixedLinearKrugerCubic_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        
         <!-- ZeroYield based yield term structures -->
         <EnumeratedPair>
           <id1>ZeroYield</id1>
@@ -209,6 +231,28 @@
           <id1>ZeroYield</id1>
           <id2>LogMixedLinearCubicNaturalSpline</id2>
           <value>ZEROYIELD_LogMixedLinearCubicNaturalSpline_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+
+        <EnumeratedPair>
+          <id1>ZeroYield</id1>
+          <id2>MixedLinearMonotonicCubicNaturalSpline</id2>
+          <value>ZEROYIELD_MixedLinearMonotonicCubicNaturalSpline_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>ZeroYield</id1>
+          <id2>LogMixedLinearMonotonicCubicNaturalSpline</id2>
+          <value>ZEROYIELD_LogMixedLinearMonotonicCubicNaturalSpline_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+
+        <EnumeratedPair>
+          <id1>ZeroYield</id1>
+          <id2>MixedLinearKrugerCubic</id2>
+          <value>ZEROYIELD_MixedLinearKrugerCubic_PiecewiseYieldCurve</value>
+        </EnumeratedPair>
+        <EnumeratedPair>
+          <id1>ZeroYield</id1>
+          <id2>LogMixedLinearKrugerCubic</id2>
+          <value>ZEROYIELD_LogMixedLinearKrugerCubic_PiecewiseYieldCurve</value>
         </EnumeratedPair>
 
         <!--ForwardRate based yield term structures-->

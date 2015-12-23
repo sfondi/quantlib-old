@@ -263,7 +263,7 @@ namespace QuantLib {
     // convenience classes
 
     class LogMixedLinearCubicNaturalSpline : public LogMixedLinearCubicInterpolation {
-      public:
+    public:
         /*! \pre the \f$ x \f$ values must be sorted. */
         template <class I1, class I2>
         LogMixedLinearCubicNaturalSpline(const I1& xBegin,
@@ -276,6 +276,33 @@ namespace QuantLib {
                                 CubicInterpolation::SecondDerivative, 0.0) {}
     };
 
+    class LogMixedLinearMonotonicCubicNaturalSpline : public LogMixedLinearCubicInterpolation {
+    public:
+        /*! \pre the \f$ x \f$ values must be sorted. */
+        template <class I1, class I2>
+        LogMixedLinearMonotonicCubicNaturalSpline(const I1& xBegin,
+                              const I1& xEnd,
+                              const I2& yBegin,
+                              const Size n)
+        : LogMixedLinearCubicInterpolation(xBegin, xEnd, yBegin, n,
+                                CubicInterpolation::Spline, true,
+                                CubicInterpolation::SecondDerivative, 0.0,
+                                CubicInterpolation::SecondDerivative, 0.0) {}
+    };
+
+    class LogMixedLinearKrugerCubic : public LogMixedLinearCubicInterpolation {
+    public:
+        /*! \pre the \f$ x \f$ values must be sorted. */
+        template <class I1, class I2>
+        LogMixedLinearKrugerCubic(const I1& xBegin,
+                              const I1& xEnd,
+                              const I2& yBegin,
+                              const Size n)
+        : LogMixedLinearCubicInterpolation(xBegin, xEnd, yBegin, n,
+                                CubicInterpolation::Kruger, false,
+                                CubicInterpolation::SecondDerivative, 0.0,
+                                CubicInterpolation::SecondDerivative, 0.0) {}
+    };
 
     namespace detail {
 
