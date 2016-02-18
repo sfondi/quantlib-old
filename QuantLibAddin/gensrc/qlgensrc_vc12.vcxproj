@@ -152,7 +152,9 @@
     <None Include="metadata\types\supertypes.xml" />
     <None Include="metadata\types\types.xml" />
     <None Include="code\codedict.py" />
-    <None Include="config\categories.xml" />
+    <None Include="config\categories.xml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="config\config.xml" />
     <None Include="stubs\stub.copyright" />
     <None Include="stubs\stub.cpp.body" />
@@ -166,6 +168,9 @@
   </ItemGroup>
   <ItemGroup>
     <Xml Include="metadata\functions\calibrationhelpers.xml">
+      <SubType>Designer</SubType>
+    </Xml>
+    <Xml Include="metadata\functions\iboroisbasisswap.xml">
       <SubType>Designer</SubType>
     </Xml>
   </ItemGroup>

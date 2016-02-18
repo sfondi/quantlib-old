@@ -11,6 +11,8 @@
     Copyright (C) 2015 Maddalena Zanzi
     Copyright (C) 2015 Riccardo Barone
     Copyright (C) 2015 Paolo Mazzocchi
+    Copyright (C) 2016 Stefano Fondi
+
   </enumeratedTypeCopyright>
 
   <EnumeratedTypeGroups>
@@ -1598,6 +1600,21 @@
         <EnumeratedType>
           <string>Receiver</string>
           <value>QuantLib::OvernightIndexedSwap::Receiver</value>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
+    
+    <EnumeratedTypeGroup type='QuantLib::IBOROISBasisSwap::Type'>
+      <includeFile>oh/enumerations/typefactory.hpp</includeFile>
+      <constructor>true</constructor>
+      <EnumeratedTypes>
+        <EnumeratedType>
+          <string>Payer</string>
+          <value>QuantLib::IBOROISBasisSwap::Payer</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Receiver</string>
+          <value>QuantLib::IBOROISBasisSwap::Receiver</value>
         </EnumeratedType>
       </EnumeratedTypes>
     </EnumeratedTypeGroup>

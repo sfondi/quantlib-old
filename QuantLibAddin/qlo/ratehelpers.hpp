@@ -202,6 +202,19 @@ namespace QuantLibAddin {
             bool permanent);
     };
 
+    class IBOROISBasisRateHelper : public RateHelper {
+    public:
+        IBOROISBasisRateHelper(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            QuantLib::Natural settlementDays,
+            const QuantLib::Period& tenor, // swap maturity
+            const QuantLib::Handle<QuantLib::Quote>& overnightSpread,
+            const boost::shared_ptr<QuantLib::IborIndex>& iborIndex,
+            const boost::shared_ptr<QuantLib::OvernightIndex>& overnightIndex,
+            const QuantLib::Handle<QuantLib::YieldTermStructure>& discount,
+            bool permanent);
+    };
+
     class BondHelper : public RateHelper {
       public:
         BondHelper(

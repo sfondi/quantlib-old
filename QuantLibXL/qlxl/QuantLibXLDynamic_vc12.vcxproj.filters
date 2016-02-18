@@ -417,6 +417,12 @@
     <ClCompile Include="register\register_calibrationhelpers.cpp">
       <Filter>register</Filter>
     </ClCompile>
+    <ClCompile Include="functions\iboroisbasisswap.cpp">
+      <Filter>functions</Filter>
+    </ClCompile>
+    <ClCompile Include="register\register_iboroisbasisswap.cpp">
+      <Filter>register</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="functions\functioncount.hpp">

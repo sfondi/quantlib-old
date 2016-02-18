@@ -33,6 +33,7 @@
 #include <ql/termstructures/yield/ratehelpers.hpp>
 #include <ql/termstructures/yield/bondhelpers.hpp>
 #include <ql/termstructures/yield/oisratehelper.hpp>
+#include <ql/termstructures/yield/oisbasisratehelper.hpp>
 
 #include <oh/repository.hpp>
 
@@ -275,6 +276,26 @@ namespace QuantLibAddin {
                                          fixedRate,
                                          overnightIndex));
         quoteName_ = f(properties->getSystemProperty("FixedRate"));
+    }
+
+    IBOROISBasisRateHelper::IBOROISBasisRateHelper(
+                        const shared_ptr<ValueObject>& properties,
+                        QuantLib::Natural settlementDays,
+                        const QuantLib::Period& tenor,
+                        const QuantLib::Handle<QuantLib::Quote>& overnightSpread,
+                        const shared_ptr<QuantLib::IborIndex>& iborIndex,
+                        const shared_ptr<QuantLib::OvernightIndex>& overnightIndex,
+                        const QuantLib::Handle<QuantLib::YieldTermStructure>& discount,
+                        bool permanent)
+    : RateHelper(properties, permanent) {
+        libraryObject_ = shared_ptr<QuantLib::IBOROISBasisRateHelper>(new
+            QuantLib::IBOROISBasisRateHelper(settlementDays,
+                                            tenor,
+                                            overnightSpread,
+                                            iborIndex,
+                                            overnightIndex,
+                                            discount));
+        quoteName_ = f(properties->getSystemProperty("OvernightSpread"));
     }
 
     BondHelper::BondHelper(

@@ -73,7 +73,7 @@ namespace QuantLib {
 
         const Schedule& floatingSchedule() const;
 		const boost::shared_ptr<IborIndex>& iborIndex() const { return iborIndex_; }
-        const DayCounter& floatingDayCount() const;
+        const DayCounter& floatingDayCount() { return floatingDayCount_; }
 
 		const Schedule& overnightSchedule() { return overnightSchedule_; }
 		const boost::shared_ptr<OvernightIndex>& overnightIndex() { return overnightIndex_; }

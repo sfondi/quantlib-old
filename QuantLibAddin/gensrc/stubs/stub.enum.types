@@ -18,6 +18,7 @@
 #include <ql/instruments/barrieroption.hpp>
 #include <ql/instruments/capfloor.hpp>
 #include <ql/instruments/forward.hpp>
+#include <ql/instruments/iboroisbasisswap.hpp>
 #include <ql/instruments/overnightindexedswap.hpp>
 #include <ql/instruments/swaption.hpp>
 #include <ql/math/interpolations/cubicinterpolation.hpp>

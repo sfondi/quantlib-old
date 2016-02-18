@@ -515,6 +515,53 @@
       </ParameterList>
     </Constructor>
 
+    <Constructor name='qlIBOROISBasisRateHelper'>
+      <libraryFunction>IBOROISBasisRateHelper</libraryFunction>
+      <SupportedPlatforms>
+        SupportedPlatform name='Excel' calcInWizard='false'/
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='SettlDays' exampleValue='2'>
+            <type>QuantLib::Natural</type>
+            <tensorRank>scalar</tensorRank>
+            <description>swap settlement days.</description>
+          </Parameter>
+          <Parameter name='Tenor' exampleValue='10Y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>swap length (e.g. 5Y for five years).</description>
+          </Parameter>
+          <Parameter name='OvernightSpread' exampleValue='0.0'>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>quote.</description>
+          </Parameter>
+          <Parameter name='IborIndex' exampleValue='Euribor'>
+            <type>QuantLib::IborIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>floating leg OvernightIndex object ID.</description>
+          </Parameter>
+          <Parameter name='ONIndex' exampleValue='Eonia'>
+            <type>QuantLib::OvernightIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>floating leg OvernightIndex object ID.</description>
+          </Parameter>
+          <Parameter name='DiscountingCurve' exampleValue='EURYC' default='""'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>discounting YieldTermStructure object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+
     <Constructor name='qlFraRateHelper'>
       <libraryFunction>FraRateHelper</libraryFunction>
       <SupportedPlatforms>

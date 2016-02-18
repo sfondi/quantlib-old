@@ -27,6 +27,7 @@
     <DataType defaultSuperType='enumeration'>QuantLib::SensitivityAnalysis</DataType>
     <DataType defaultSuperType='enumeration'>QuantLib::Settlement::Type</DataType>
     <DataType defaultSuperType='enumeration'>QuantLib::OvernightIndexedSwap::Type</DataType>
+    <DataType defaultSuperType='enumeration'>QuantLib::IBOROISBasisSwap::Type</DataType>
     <DataType defaultSuperType='enumeration'>QuantLib::VanillaSwap::Type</DataType>
     <DataType defaultSuperType='enumeration'>QuantLib::Futures::Type</DataType>
     <DataType defaultSuperType='enumeration'>QuantLib::Weekday</DataType>
@@ -103,6 +104,8 @@
     <DataType defaultSuperType='libraryClass'>QuantLib::HistoricalForwardRatesAnalysis</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::HistoricalRatesAnalysis</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::IborIndex</DataType>
+    <DataType defaultSuperType='libraryClass'>QuantLib::IBOROISBasisRateHelper</DataType>
+    <DataType defaultSuperType='libraryClass'>QuantLib::IBOROISBasisSwap</DataType>    
     <DataType defaultSuperType='libraryClass'>QuantLib::Euribor</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::Index</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::Instrument</DataType>
@@ -230,6 +233,7 @@
     <DataType defaultSuperType='objectClass'>QuantLibAddin::GaussianLHPLossModel</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::Handle</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::HistoricalForwardRatesAnalysis</DataType>
+    <DataType defaultSuperType='objectClass'>QuantLibAddin::IBOROISBasisSwap</DataType>    
     <DataType defaultSuperType='objectClass'>QuantLibAddin::Index</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::Instrument</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::InterpolatedYieldCurve</DataType>

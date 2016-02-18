@@ -1,0 +1,414 @@
+<Category name='iboroisbasisswap'>
+  <description>functions to construct and use IBOROISBasisSwap objects.</description>
+  <displayName>IBOR OIS Basis Swap</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <addinIncludes>
+    <include>qlo/iboroisbasisswap.hpp</include>
+    <include>qlo/indexes/iborindex.hpp</include>
+    <include>qlo/schedule.hpp</include>
+    <include>qlo/ratehelpers.hpp</include>
+
+    <include>ql/indexes/iborindex.hpp</include>
+    <include>ql/termstructures/yield/oisbasisratehelper.hpp</include>
+  </addinIncludes>
+  <serializationIncludes>
+    <include>qlo/iboroisbasisswap.hpp</include>
+    <include>qlo/indexes/iborindex.hpp</include>
+    <include>qlo/schedule.hpp</include>
+    <include>qlo/ratehelpers.hpp</include>
+
+    <include>ql/indexes/iborindex.hpp</include>
+    <include>ql/termstructures/yield/oisbasisratehelper.hpp</include>
+  </serializationIncludes>
+  <copyright>
+    Copyright (C) 2016 Stefano Fondi
+  </copyright>
+  
+  <Functions>
+
+    <Constructor name='qlIBOROISBasisSwap'>
+      <libraryFunction>IBOROISBasisSwap</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Calc'/-->
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <processorName>InstrumentProcessor</processorName>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='PayerReceiver' default='"Payer"'>
+            <type>QuantLib::IBOROISBasisSwap::Type</type>
+            <tensorRank>scalar</tensorRank>
+            <description>PAYER to pay the ibor rate, RECEIVER to receive it.</description>
+          </Parameter>
+          <Parameter name='Nominal' default='100'>
+            <type>QuantLib::Real</type>
+            <tensorRank>vector</tensorRank>
+            <description>Notional Amount.</description>
+          </Parameter>
+          <Parameter name='FloatingLegSchedule' exampleValue='FloatingLegSchedule'>
+            <type>QuantLib::Schedule</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>floating leg Schedule object ID.</description>
+          </Parameter>
+          <Parameter name='IborIndex'>
+            <type>QuantLib::IborIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>floating leg IborIndex object ID.</description>
+          </Parameter>
+          <Parameter name='FloatingDayCounter' exampleValue='Actual/360'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>floating leg day counter (e.g. Actual/360).</description>
+          </Parameter>
+          <Parameter name='OvernightLegSchedule' exampleValue='OvernightLegSchedule'>
+            <type>QuantLib::Schedule</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>overnight leg Schedule object ID.</description>
+          </Parameter>
+          <Parameter name='OvernightIndex'>
+            <type>QuantLib::OvernightIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>overnight leg OvernightIndex object ID.</description>
+          </Parameter>
+          <Parameter name='OvernightSpread' default='0.0'>
+            <type>QuantLib::Spread</type>
+            <tensorRank>scalar</tensorRank>
+            <description>overnight leg spread.</description>
+          </Parameter>
+          <Parameter name='OvernightDayCounter' exampleValue='Actual/360'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>overnight leg day counter (e.g. Actual/360).</description>
+          </Parameter>
+          <Parameter name='PaymentConvention' default='"Following"'>
+            <type>QuantLib::BusinessDayConvention</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Payment dates' business day convention, if empty uses the overnight index day convention.</description>
+          </Parameter>
+          <Parameter name='AritmeticAverage' default='TRUE'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE uses the aritmetic average, FALSE uses the geometric average.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlMakeIBOROISBasisSwap'>
+      <libraryFunction>IBOROISBasisSwap</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Calc'/-->
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='SettlDays' default='2'>
+            <type>QuantLib::Natural</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Number of days to spot date.</description>
+          </Parameter>
+          <Parameter name='SwapTenor' exampleValue='5Y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>swap tenor period (e.g. 5Y).</description>
+          </Parameter>
+          <Parameter name='IborIndex' exampleValue='Euribor'>
+            <type>QuantLib::IborIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>IborIndex object ID.</description>
+          </Parameter>
+          <Parameter name='OvernightIndex' exampleValue='Eonia'>
+            <type>QuantLib::OvernightIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>OvernightIndex object ID.</description>
+          </Parameter>
+          <Parameter name='Spread' default='0.0'>
+            <type>QuantLib::Rate</type>
+            <tensorRank>scalar</tensorRank>
+            <description> overnight spread. </description>
+          </Parameter>
+          <Parameter name='ForwardStart' exampleValue='"0D"'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>forward start period (from spot date).</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlMakeDatedIBOROISBasisSwap'>
+      <libraryFunction>IBOROISBasisSwap</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Calc'/-->
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='StartDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>start date. If missing first ECB date is used.</description>
+          </Parameter>
+          <Parameter name='EndDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>end date. If missing first ECB date after start date is used.</description>
+          </Parameter>
+          <Parameter name='IborIndex' exampleValue='Euribor'>
+            <type>QuantLib::IborIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>IborIndex object ID.</description>
+          </Parameter>
+          <Parameter name='OvernightIndex' exampleValue='Eonia'>
+            <type>QuantLib::OvernightIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>OvernightIndex object ID.</description>
+          </Parameter>
+          <Parameter name='Spread' default='0.0'>
+            <type>QuantLib::Rate</type>
+            <tensorRank>scalar</tensorRank>
+            <description>overnight spread. </description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlIBOROISBasisSwapFromIBOROISBasisRateHelper'>
+      <libraryFunction>IBOROISBasisSwap</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Calc'/-->
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='IBOROISBasisRateHelper'>
+            <type>QuantLib::IBOROISBasisRateHelper</type>
+            <tensorRank>scalar</tensorRank>
+            <description>IBOROISBasisRateHelper object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Member name='qlIBOROISBasisSwapFloatingLegBPS' type='QuantLib::IBOROISBasisSwap'>
+      <description>returns the BPS of the floating leg for the given IBOROISBasisSwap object.</description>
+      <libraryFunction>floatingLegBPS</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Calc'/-->
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters />
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlIBOROISBasisSwapFloatingLegNPV' type='QuantLib::IBOROISBasisSwap'>
+      <description>returns the NPV of the floating leg for the given IBOROISBasisSwap object.</description>
+      <libraryFunction>floatingLegNPV</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Calc'/-->
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters />
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlIBOROISBasisSwapOvernightLegBPS' type='QuantLib::IBOROISBasisSwap'>
+      <description>returns the BPS of the overnight rate leg for the given IBOROISBasisSwap object.</description>
+      <libraryFunction>overnightLegBPS</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Calc'/-->
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters />
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlIBOROISBasisSwapOvernightLegNPV' type='QuantLib::IBOROISBasisSwap'>
+      <description>returns the NPV of the overnight rate leg for the given IBOROISBasisSwap object.</description>
+      <libraryFunction>overnightLegNPV</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Calc'/-->
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters />
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlIBOROISBasisSwapFairSpread' type='QuantLib::IBOROISBasisSwap'>
+      <description>returns the fair spread over the overnight rate which would zero the swap NPV for the given IBOROISBasisSwap object.</description>
+      <libraryFunction>fairSpread</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Calc'/-->
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters />
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Spread</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlIBOROISBasisSwapType' type='QuantLib::IBOROISBasisSwap'>
+      <description>returns the swap type (Payer or Receiver) of the given IBOROISBasisSwap object.</description>
+      <libraryFunction>type</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Calc'/-->
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters />
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::IBOROISBasisSwap::Type</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlIBOROISBasisSwapNominal' type='QuantLib::IBOROISBasisSwap'>
+      <description>returns the swap nominal for the given IBOROISBasisSwap object.</description>
+      <libraryFunction>nominal</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Calc'/-->
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters />
+      </ParameterList>
+      <ReturnValue>
+        <type>double</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlIBOROISBasisSwapFloatingDayCount' type='QuantLib::IBOROISBasisSwap'>
+      <description>returns the floating rate day count convention for the given IBOROISBasisSwap object.</description>
+      <libraryFunction>floatingDayCount</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Calc'/-->
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters />
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::DayCounter</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlIBOROISBasisSwapSpread' type='QuantLib::IBOROISBasisSwap'>
+      <description>returns the spread over the overnight rate for the given IBOROISBasisSwap object.</description>
+      <libraryFunction>spread</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Calc'/-->
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters />
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Spread</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlIBOROISBasisSwapFloatingLegAnalysis' type='QuantLibAddin::IBOROISBasisSwap'>
+      <description>returns the floating leg cash flow analysis of the given IBOROISBasisSwap object.</description>
+      <libraryFunction>floatingLegAnalysis</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Calc'/-->
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='AfterDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Shows only cashflows after given date</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>any</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlIBOROISBasisSwapOvernightLegAnalysis' type='QuantLibAddin::IBOROISBasisSwap'>
+      <description>returns the overnight rate leg cash flow analysis.</description>
+      <libraryFunction>overnightLegAnalysis</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Calc'/-->
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='AfterDate' const='False' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Shows only cashflows after given date</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>any</type>
+        <tensorRank>matrix</tensorRank>
+      </ReturnValue>
+    </Member>
+
+  </Functions>
+</Category>
