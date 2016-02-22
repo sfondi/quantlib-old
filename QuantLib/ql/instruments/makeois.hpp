@@ -2,6 +2,7 @@
 
 /*
  Copyright (C) 2009 Ferdinando Ametrano
+ Copyright (C) 2016 Stefano Fondi
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -64,6 +65,7 @@ namespace QuantLib {
                   const Handle<YieldTermStructure>& discountingTermStructure);
         MakeOIS& withPricingEngine(
                               const boost::shared_ptr<PricingEngine>& engine);
+        MakeOIS& withArithmeticAverage(bool arithmeticAveragedCoupon = false);
       private:
         Period swapTenor_;
         boost::shared_ptr<OvernightIndex> overnightIndex_;
@@ -77,6 +79,7 @@ namespace QuantLib {
         Frequency paymentFrequency_;
         DateGeneration::Rule rule_;
         bool endOfMonth_, isDefaultEOM_;
+        bool arithmeticAveragedCoupon_;
 
         OvernightIndexedSwap::Type type_;
         Real nominal_;

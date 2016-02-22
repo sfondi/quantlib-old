@@ -3,6 +3,7 @@
 /*
  Copyright (C) 2009, 2014, 2015 Ferdinando Ametrano
  Copyright (C) 2015 Paolo Mazzocchi
+ Copyright (C) 2016 Stefano Fondi
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -41,7 +42,8 @@ namespace QuantLib {
       isDefaultEOM_(true),
       type_(OvernightIndexedSwap::Payer), nominal_(1.0),
       overnightSpread_(0.0),
-      fixedDayCount_(overnightIndex->dayCounter()) {}
+      fixedDayCount_(overnightIndex->dayCounter()),
+      arithmeticAveragedCoupon_(false) {}
 
     MakeOIS::operator OvernightIndexedSwap() const {
         shared_ptr<OvernightIndexedSwap> ois = *this;
@@ -117,7 +119,8 @@ namespace QuantLib {
             OvernightIndexedSwap(type_, nominal_,
                                  schedule,
                                  usedFixedRate, fixedDayCount_,
-                                 overnightIndex_, overnightSpread_));
+                                 overnightIndex_, overnightSpread_,
+                                 arithmeticAveragedCoupon_));
 
         if (engine_ == 0) {
             Handle<YieldTermStructure> disc =
@@ -205,6 +208,11 @@ namespace QuantLib {
 
     MakeOIS& MakeOIS::withOvernightLegSpread(Spread sp) {
         overnightSpread_ = sp;
+        return *this;
+    }
+
+    MakeOIS& MakeOIS::withArithmeticAverage(bool arithmeticAveragedCoupon) {
+        arithmeticAveragedCoupon_ = arithmeticAveragedCoupon;
         return *this;
     }
 

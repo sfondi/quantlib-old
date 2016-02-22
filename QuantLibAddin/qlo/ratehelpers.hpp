@@ -7,6 +7,7 @@
  Copyright (C) 2006, 2007, 2008, 2009, 2012, 2015 Ferdinando Ametrano
  Copyright (C) 2007 Marco Bianchetti
  Copyright (C) 2015 Maddalena Zanzi
+ Copyright (C) 2016 Stefano Fondi
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -186,6 +187,18 @@ namespace QuantLibAddin {
             const QuantLib::Period& tenor, // swap maturity
             const QuantLib::Handle<QuantLib::Quote>& fixedRate,
             const boost::shared_ptr<QuantLib::OvernightIndex>& overnightIndex,
+            const QuantLib::Handle<QuantLib::YieldTermStructure>& discount,
+            bool permanent);
+
+        OISRateHelper(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            QuantLib::Natural settlementDays,
+            const QuantLib::Period& tenor, // swap maturity
+            const QuantLib::Handle<QuantLib::Quote>& fixedRate,
+            const boost::shared_ptr<QuantLib::OvernightIndex>& overnightIndex,
+            const QuantLib::Handle<QuantLib::Quote>& spread,
+            const QuantLib::Frequency paymentFrequency,
+            bool arithmeticAveragedCoupon,
             const QuantLib::Handle<QuantLib::YieldTermStructure>& discount,
             bool permanent);
     };

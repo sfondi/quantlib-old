@@ -22,6 +22,7 @@
   </serializationIncludes>
   <copyright>
     Copyright (C) 2009, 2011, 2015 Ferdinando Ametrano
+    Copyright (C) 2016 Stefano Fondi
   </copyright>
   <Functions>
 
@@ -71,6 +72,62 @@
             <type>QuantLib::Spread</type>
             <tensorRank>scalar</tensorRank>
             <description>overnight leg spread.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlOvernightIndexedSwapAA'>
+      <libraryFunction>OvernightIndexedSwap</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Calc'/-->
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <processorName>InstrumentProcessor</processorName>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='PayerReceiver' default='"Payer"'>
+            <type>QuantLib::OvernightIndexedSwap::Type</type>
+            <tensorRank>scalar</tensorRank>
+            <description>PAYER to pay the fixed rate, RECEIVER to receive it.</description>
+          </Parameter>
+          <Parameter name='Nominal' default='100'>
+            <type>QuantLib::Real</type>
+            <tensorRank>vector</tensorRank>
+            <description>Notional Amount.</description>
+          </Parameter>
+          <Parameter name='Schedule' exampleValue='OisSchedule'>
+            <type>QuantLib::Schedule</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>Schedule object ID.</description>
+          </Parameter>
+          <Parameter name='FixedRate' default='0.0'>
+            <type>QuantLib::Rate</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the fixed leg rate.</description>
+          </Parameter>
+          <Parameter name='FixDayCounter' exampleValue='Actual/360'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>fixed leg day counter (e.g. Actual/360).</description>
+          </Parameter>
+          <Parameter name='OvernightIndex'>
+            <type>QuantLib::OvernightIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>overnight leg OvernightIndex object ID.</description>
+          </Parameter>
+          <Parameter name='Spread' default='0.0'>
+            <type>QuantLib::Spread</type>
+            <tensorRank>scalar</tensorRank>
+            <description>overnight leg spread.</description>
+          </Parameter>
+          <Parameter name='ArithmeticAveragedCoupon' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if arithmetic average is used, FALSE otherwise. </description>
           </Parameter>
         </Parameters>
       </ParameterList>

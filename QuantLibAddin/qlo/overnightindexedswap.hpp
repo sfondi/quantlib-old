@@ -2,6 +2,7 @@
 
 /*
  Copyright (C) 2009, 2011, 2015 Ferdinando Ametrano
+ Copyright (C) 2016 Stefano Fondi
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -40,6 +41,17 @@ namespace QuantLibAddin {
             const QuantLib::DayCounter& fixedDC,
             const boost::shared_ptr<QuantLib::OvernightIndex>& overnightIndex,
             QuantLib::Spread overnightSpread,
+            bool permanent);
+        OvernightIndexedSwap( // arithmeticAveragedCoupon
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            QuantLib::OvernightIndexedSwap::Type type,
+            std::vector<QuantLib::Real> nominals,
+            const boost::shared_ptr<QuantLib::Schedule>& schedule,
+            QuantLib::Rate fixedRate,
+            const QuantLib::DayCounter& fixedDC,
+            const boost::shared_ptr<QuantLib::OvernightIndex>& overnightIndex,
+            QuantLib::Spread overnightSpread,
+            bool arithmeticAveragedCoupon,
             bool permanent);
         OvernightIndexedSwap( // MakeOIS
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
