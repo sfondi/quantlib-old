@@ -182,6 +182,60 @@
       </ParameterList>
     </Constructor>
 
+    <Constructor name='qlMakeOISAA'>
+      <libraryFunction>OvernightIndexedSwap</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Calc'/-->
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='SettlDays' default='2'>
+            <type>QuantLib::Natural</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Number of days to spot date.</description>
+          </Parameter>
+          <Parameter name='SwapTenor' exampleValue='5Y'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>swap tenor period (e.g. 5Y).</description>
+          </Parameter>
+          <Parameter name='OvernightIndex' exampleValue='Eonia'>
+            <type>QuantLib::OvernightIndex</type>
+            <tensorRank>scalar</tensorRank>
+            <description>OvernightIndex object ID.</description>
+          </Parameter>
+          <Parameter name='FixedRate' default='QuantLib::Null&lt;QuantLib::Rate&gt;()'>
+            <type>QuantLib::Rate</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the fixed leg rate. If missing atm rate is used.</description>
+          </Parameter>
+          <Parameter name='ForwardStart' exampleValue='"0D"'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>forward start period (from spot date).</description>
+          </Parameter>
+          <Parameter name='FixDayCounter' default='"Actual/360"'>
+            <type>QuantLib::DayCounter</type>
+            <tensorRank>scalar</tensorRank>
+            <description>fixed leg day counter.</description>
+          </Parameter>
+          <Parameter name='OvernightSpread' default='0.0'>
+            <type>QuantLib::Spread</type>
+            <tensorRank>scalar</tensorRank>
+            <description>the spread in the overnight leg rate.</description>
+          </Parameter>
+          <Parameter name='ArithmeticAveragedCoupon' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if arithmetic average is used, FALSE otherwise. </description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
     <Constructor name='qlMakeDatedOIS'>
       <libraryFunction>OvernightIndexedSwap</libraryFunction>
       <SupportedPlatforms>

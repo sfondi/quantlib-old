@@ -96,6 +96,28 @@ namespace QuantLibAddin {
                         .operator shared_ptr<QuantLib::OvernightIndexedSwap>();
     }
 
+    // MakeOISAA
+    OvernightIndexedSwap::OvernightIndexedSwap(
+        const shared_ptr<ObjectHandler::ValueObject>& properties,
+        QuantLib::Natural settlDays,
+        const QuantLib::Period& swapTenor,
+        const shared_ptr<QuantLib::OvernightIndex>& overnightIndex,
+        QuantLib::Rate fixRate,
+        const QuantLib::Period& fwdStart,
+        const QuantLib::DayCounter& fixDayCounter,
+        QuantLib::Spread overnightSpread,
+        bool arithmeticAveragedCoupon,
+        bool permanent)
+        : Swap(properties, permanent)
+    {
+        libraryObject_ = MakeOIS(swapTenor, overnightIndex, fixRate, fwdStart)
+            .withSettlementDays(settlDays)
+            .withFixedLegDayCount(fixDayCounter)
+            .withOvernightLegSpread(overnightSpread)
+            .withArithmeticAverage(arithmeticAveragedCoupon)
+            .operator shared_ptr<QuantLib::OvernightIndexedSwap>();
+    }
+
     // MakeDatedOIS
     OvernightIndexedSwap::OvernightIndexedSwap(
             const shared_ptr<ObjectHandler::ValueObject>& properties,

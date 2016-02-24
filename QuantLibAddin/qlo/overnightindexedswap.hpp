@@ -61,7 +61,18 @@ namespace QuantLibAddin {
             QuantLib::Rate fixedRate,
             const QuantLib::Period& forwardStart,
             const QuantLib::DayCounter& fixLegDayCounter,
-            QuantLib::Spread floatingLegSpread,
+            QuantLib::Spread overnightSpread,
+            bool permanent);
+        OvernightIndexedSwap( // MakeOISAA
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            QuantLib::Natural settlDays,
+            const QuantLib::Period& swapTenor,
+            const boost::shared_ptr<QuantLib::OvernightIndex>& overnightIndex,
+            QuantLib::Rate fixedRate,
+            const QuantLib::Period& forwardStart,
+            const QuantLib::DayCounter& fixLegDayCounter,
+            QuantLib::Spread overnightSpread,
+            bool arithmeticAveragedCoupon,
             bool permanent);
         OvernightIndexedSwap( // MakeDatedOIS
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
