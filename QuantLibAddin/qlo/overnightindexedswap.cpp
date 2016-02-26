@@ -65,6 +65,8 @@ namespace QuantLibAddin {
             const shared_ptr<QuantLib::OvernightIndex>& overnightIndex,
             QuantLib::Spread overnightSpread,
             bool arithmeticAveragedCoupon,
+            QuantLib::Real meanReversion,
+            QuantLib::Real vol,
             bool permanent)
     : Swap(properties, permanent)
     {
@@ -73,7 +75,8 @@ namespace QuantLibAddin {
                                            *schedule,
                                            fixedRate, fixedDC,
                                            overnightIndex, overnightSpread,
-                                           arithmeticAveragedCoupon));
+                                           arithmeticAveragedCoupon,
+                                           meanReversion, vol));
     }
 
     // MakeOIS
@@ -107,6 +110,8 @@ namespace QuantLibAddin {
         const QuantLib::DayCounter& fixDayCounter,
         QuantLib::Spread overnightSpread,
         bool arithmeticAveragedCoupon,
+        QuantLib::Real meanReversion,
+        QuantLib::Real vol,
         bool permanent)
         : Swap(properties, permanent)
     {
@@ -114,7 +119,7 @@ namespace QuantLibAddin {
             .withSettlementDays(settlDays)
             .withFixedLegDayCount(fixDayCounter)
             .withOvernightLegSpread(overnightSpread)
-            .withArithmeticAverage(arithmeticAveragedCoupon)
+            .withArithmeticAverage(arithmeticAveragedCoupon, meanReversion, vol)
             .operator shared_ptr<QuantLib::OvernightIndexedSwap>();
     }
 

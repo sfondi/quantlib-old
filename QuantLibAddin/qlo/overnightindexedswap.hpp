@@ -52,6 +52,8 @@ namespace QuantLibAddin {
             const boost::shared_ptr<QuantLib::OvernightIndex>& overnightIndex,
             QuantLib::Spread overnightSpread,
             bool arithmeticAveragedCoupon,
+            QuantLib::Real meanReversion,
+            QuantLib::Real vol,
             bool permanent);
         OvernightIndexedSwap( // MakeOIS
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
@@ -73,6 +75,8 @@ namespace QuantLibAddin {
             const QuantLib::DayCounter& fixLegDayCounter,
             QuantLib::Spread overnightSpread,
             bool arithmeticAveragedCoupon,
+            QuantLib::Real meanReversion,
+            QuantLib::Real vol,
             bool permanent);
         OvernightIndexedSwap( // MakeDatedOIS
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,

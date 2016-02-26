@@ -48,6 +48,8 @@ namespace QuantLib {
                       const Handle<Quote>& spread,
                       Frequency paymentFrequency,
                       bool arithmeticAveragedCoupon,
+                      Real meanReversion,
+                      Real vol,
                       // exogenous discounting curve
                       const Handle<YieldTermStructure>& discountingCurve
                                             = Handle<YieldTermStructure>());
@@ -79,6 +81,8 @@ namespace QuantLib {
 
         Frequency paymentFrequency_;
         bool arithmeticAveragedCoupon_;
+        Real meanReversion_;
+        Real vol_;
         Handle<Quote> spread_;
     };
 

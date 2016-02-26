@@ -522,6 +522,16 @@
             <tensorRank>scalar</tensorRank>
             <description>TRUE if arithmetic average is used, FALSE otherwise.</description>
           </Parameter>
+          <Parameter name='MeanReversion' exampleValue='0.03'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>meanReverison for the Hull-White short rate .</description>
+          </Parameter>
+          <Parameter name='Vol' exampleValue='0.00'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Volatility for the Hull-White short rate.</description>
+          </Parameter>
           <Parameter name='DiscountingCurve' exampleValue='EURYC' default='""'>
             <type>QuantLib::YieldTermStructure</type>
             <superType>libToHandle</superType>

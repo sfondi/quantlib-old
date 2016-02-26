@@ -271,6 +271,8 @@ namespace QuantLibAddin {
                         const QuantLib::Handle<QuantLib::Quote>& spread,
                         const QuantLib::Frequency paymentFrequency,
                         bool arithmeticAveragedCoupon,
+                        const QuantLib::Real meanReversion,
+                        const QuantLib::Real vol,
                         const QuantLib::Handle<QuantLib::YieldTermStructure>& discount,
                         bool permanent)
     : RateHelper(properties, permanent) {
@@ -281,7 +283,8 @@ namespace QuantLibAddin {
                                     overnightIndex,
                                     spread,
                                     paymentFrequency,
-                                    arithmeticAveragedCoupon));
+                                    arithmeticAveragedCoupon,
+                                    meanReversion, vol));
         quoteName_ = f(properties->getSystemProperty("FixedRate"));
     }
 

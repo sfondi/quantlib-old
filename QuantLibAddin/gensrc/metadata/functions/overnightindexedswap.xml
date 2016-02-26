@@ -129,6 +129,16 @@
             <tensorRank>scalar</tensorRank>
             <description>TRUE if arithmetic average is used, FALSE otherwise. </description>
           </Parameter>
+          <Parameter name='MeanReversion' default='0.03'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>MeanReversion of the Hull-White short rate.</description>
+          </Parameter>
+          <Parameter name='Volatility' default='0.00'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Volatility of the Hull-White short rate.</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
@@ -231,6 +241,16 @@
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
             <description>TRUE if arithmetic average is used, FALSE otherwise. </description>
+          </Parameter>
+          <Parameter name='MeanReversion' default='0.03'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>MeanReversion of the Hull-White short rate.</description>
+          </Parameter>
+          <Parameter name='Volatility' default='0.00'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Volatility of the Hull-White short rate.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

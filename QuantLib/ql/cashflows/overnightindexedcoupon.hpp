@@ -110,11 +110,16 @@ namespace QuantLib {
         : public FloatingRateCouponPricer {
     public:
         ArithmeticAveragedOvernightIndexedCouponPricer(
-            Handle<Quote> meanReversion =
+            /*Handle<Quote> meanReversion =
                 Handle<Quote>(boost::shared_ptr<Quote>(new SimpleQuote(0.03))),
             Handle<Quote> vol =
-                Handle<Quote>(boost::shared_ptr<Quote>(new SimpleQuote(0.00))))
-            : meanReversion_(meanReversion), vol_(vol) {}
+                Handle<Quote>(boost::shared_ptr<Quote>(new SimpleQuote(0.00))))*/
+            Real meanReversion = 0.03,
+            Real vol = 0.00)           
+            : meanReversion_(Handle<Quote>(
+                boost::shared_ptr<Quote>(new SimpleQuote(meanReversion)))),
+            vol_(Handle<Quote>(
+                boost::shared_ptr<Quote>(new SimpleQuote(vol)))) {}
 
         void initialize(const FloatingRateCoupon& coupon);
         Rate swapletRate() const;
@@ -123,8 +128,9 @@ namespace QuantLib {
         Rate capletRate(Rate) const { QL_FAIL("capletRate not available"); }
         Real floorletPrice(Rate) const { QL_FAIL("floorletPrice not available"); }
         Rate floorletRate(Rate) const { QL_FAIL("floorletRate not available"); }
-        Real meanReversion() const { meanReversion_->value(); };
-        Real volatility() const { vol_->value(); };
+        Real meanReversion() const { meanReversion_->value();};
+        Real volatility() const { vol_->value();
+    };
     protected:
         Real convAdj1(Time ts, Time te) const;
         Real convAdj2(Time ts, Time te) const;

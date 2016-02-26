@@ -65,7 +65,9 @@ namespace QuantLib {
                   const Handle<YieldTermStructure>& discountingTermStructure);
         MakeOIS& withPricingEngine(
                               const boost::shared_ptr<PricingEngine>& engine);
-        MakeOIS& withArithmeticAverage(bool arithmeticAveragedCoupon = false);
+        MakeOIS& withArithmeticAverage(bool arithmeticAveragedCoupon = false,
+                                       Real meanReversion = 0.03,
+                                       Real vol = 0.00);
       private:
         Period swapTenor_;
         boost::shared_ptr<OvernightIndex> overnightIndex_;
@@ -80,6 +82,8 @@ namespace QuantLib {
         DateGeneration::Rule rule_;
         bool endOfMonth_, isDefaultEOM_;
         bool arithmeticAveragedCoupon_;
+        Real meanReversion_;
+        Real vol_;
 
         OvernightIndexedSwap::Type type_;
         Real nominal_;

@@ -43,7 +43,9 @@ namespace QuantLib {
       type_(OvernightIndexedSwap::Payer), nominal_(1.0),
       overnightSpread_(0.0),
       fixedDayCount_(overnightIndex->dayCounter()),
-      arithmeticAveragedCoupon_(false) {}
+      arithmeticAveragedCoupon_(false),
+      meanReversion_(0.03),
+      vol_(0.00) {}
 
     MakeOIS::operator OvernightIndexedSwap() const {
         shared_ptr<OvernightIndexedSwap> ois = *this;
@@ -98,7 +100,10 @@ namespace QuantLib {
                                       schedule,
                                       0.0, // fixed rate
                                       fixedDayCount_,
-                                      overnightIndex_, overnightSpread_);
+                                      overnightIndex_, overnightSpread_,
+                                      arithmeticAveragedCoupon_,
+                                      meanReversion_,
+                                      vol_);
             if (engine_ == 0) {
                 Handle<YieldTermStructure> disc =
                                     overnightIndex_->forwardingTermStructure();
@@ -120,7 +125,9 @@ namespace QuantLib {
                                  schedule,
                                  usedFixedRate, fixedDayCount_,
                                  overnightIndex_, overnightSpread_,
-                                 arithmeticAveragedCoupon_));
+                                 arithmeticAveragedCoupon_,
+                                 meanReversion_,
+                                 vol_));
 
         if (engine_ == 0) {
             Handle<YieldTermStructure> disc =
@@ -211,8 +218,12 @@ namespace QuantLib {
         return *this;
     }
 
-    MakeOIS& MakeOIS::withArithmeticAverage(bool arithmeticAveragedCoupon) {
+    MakeOIS& MakeOIS::withArithmeticAverage(bool arithmeticAveragedCoupon,
+                                            Real meanReversion,
+                                            Real vol) {
         arithmeticAveragedCoupon_ = arithmeticAveragedCoupon;
+        meanReversion_ = meanReversion;
+        vol_ = vol;
         return *this;
     }
 

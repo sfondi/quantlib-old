@@ -55,12 +55,15 @@ namespace QuantLib {
                     const Handle<Quote>& spread,
                     Frequency paymentFrequency,
                     bool arithmeticAveragedCoupon,
+                    Real meanReversion,
+                    Real vol,
                     const Handle<YieldTermStructure>& discount)
     : RelativeDateRateHelper(fixedRate),
       settlementDays_(settlementDays), tenor_(tenor),
       overnightIndex_(overnightIndex), discountHandle_(discount),
       spread_(spread), paymentFrequency_(paymentFrequency),
-      arithmeticAveragedCoupon_(arithmeticAveragedCoupon) {
+      arithmeticAveragedCoupon_(arithmeticAveragedCoupon),
+      meanReversion_(meanReversion), vol_(vol) {
         registerWith(overnightIndex_);
         registerWith(discountHandle_);
         registerWith(spread_);
@@ -82,7 +85,8 @@ namespace QuantLib {
             .withDiscountingTermStructure(discountRelinkableHandle_)
             .withSettlementDays(settlementDays_)
             .withPaymentFrequency(paymentFrequency_)
-            .withArithmeticAverage(arithmeticAveragedCoupon_);
+            .withArithmeticAverage(arithmeticAveragedCoupon_,
+                                   meanReversion_, vol_);
 
         earliestDate_ = swap_->startDate();
         latestDate_ = swap_->maturityDate();
