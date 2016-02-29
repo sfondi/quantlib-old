@@ -73,6 +73,7 @@ namespace QuantLibAddin {
             QuantLib::Rate fixedRate,
             const QuantLib::Period& forwardStart,
             const QuantLib::DayCounter& fixLegDayCounter,
+            const QuantLib::Frequency paymentFrequency,
             QuantLib::Spread overnightSpread,
             bool arithmeticAveragedCoupon,
             QuantLib::Real meanReversion,

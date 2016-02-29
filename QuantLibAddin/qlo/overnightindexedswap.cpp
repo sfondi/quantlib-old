@@ -108,6 +108,7 @@ namespace QuantLibAddin {
         QuantLib::Rate fixRate,
         const QuantLib::Period& fwdStart,
         const QuantLib::DayCounter& fixDayCounter,
+        const QuantLib::Frequency paymentFrequency,
         QuantLib::Spread overnightSpread,
         bool arithmeticAveragedCoupon,
         QuantLib::Real meanReversion,
@@ -118,6 +119,7 @@ namespace QuantLibAddin {
         libraryObject_ = MakeOIS(swapTenor, overnightIndex, fixRate, fwdStart)
             .withSettlementDays(settlDays)
             .withFixedLegDayCount(fixDayCounter)
+            .withPaymentFrequency(paymentFrequency)
             .withOvernightLegSpread(overnightSpread)
             .withArithmeticAverage(arithmeticAveragedCoupon, meanReversion, vol)
             .operator shared_ptr<QuantLib::OvernightIndexedSwap>();

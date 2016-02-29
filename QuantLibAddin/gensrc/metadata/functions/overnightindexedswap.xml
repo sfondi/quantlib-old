@@ -232,6 +232,11 @@
             <tensorRank>scalar</tensorRank>
             <description>fixed leg day counter.</description>
           </Parameter>
+          <Parameter name='PaymentFrequency' default='"Annual"'>
+            <type>QuantLib::Frequency</type>
+            <tensorRank>scalar</tensorRank>
+            <description>payment frequency.</description>
+          </Parameter>
           <Parameter name='OvernightSpread' default='0.0'>
             <type>QuantLib::Spread</type>
             <tensorRank>scalar</tensorRank>
