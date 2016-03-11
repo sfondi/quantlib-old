@@ -356,6 +356,7 @@
     <ClCompile Include="functions\marketmodelevolvers.cpp" />
     <ClCompile Include="functions\marketmodels.cpp" />
     <ClCompile Include="functions\mathf.cpp" />
+    <ClCompile Include="functions\multicurveoptimizer.cpp" />
     <ClCompile Include="functions\optimization.cpp" />
     <ClCompile Include="functions\options.cpp" />
     <ClCompile Include="functions\overnightindexedswap.cpp" />
@@ -371,6 +372,7 @@
     <ClCompile Include="functions\ratehelpers.cpp" />
     <ClCompile Include="register\register_calibrationhelpers.cpp" />
     <ClCompile Include="register\register_iboroisbasisswap.cpp" />
+    <ClCompile Include="register\register_multicurveoptimizer.cpp" />
     <ClCompile Include="register\register_overnightindexedswap.cpp" />
     <ClCompile Include="functions\schedule.cpp" />
     <ClCompile Include="functions\sequencestatistics.cpp" />

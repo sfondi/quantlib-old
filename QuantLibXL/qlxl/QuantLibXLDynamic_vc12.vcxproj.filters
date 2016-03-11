@@ -423,6 +423,12 @@
     <ClCompile Include="register\register_iboroisbasisswap.cpp">
       <Filter>register</Filter>
     </ClCompile>
+    <ClCompile Include="register\register_multicurveoptimizer.cpp">
+      <Filter>register</Filter>
+    </ClCompile>
+    <ClCompile Include="functions\multicurveoptimizer.cpp">
+      <Filter>functions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="functions\functioncount.hpp">

@@ -1,0 +1,70 @@
+<Category name='multicurveoptimizer'>
+  <description>functions to construct and use a MultiCurveOptimizer objects.</description>
+  <displayName>MultiCurveOptimizer</displayName>
+  <xlFunctionWizardCategory>QuantLib - Financial</xlFunctionWizardCategory>
+  <serializationIncludes>
+    <include>qlo/multicurveoptimizer.hpp</include>
+    <include>qlo/piecewiseyieldcurve.hpp</include>
+    <!--<include>qlo/termstructures.hpp</include>-->
+    <!--<include>qlo/indexes/ibor/euribor.hpp</include>-->
+
+    <!--<include>ql/termstructures/yield/piecewiseyieldcurve.hpp</include>
+    <include>ql/termstructures/multibootstrap.hpp</include>-->
+    <!--<include>ql/indexes/ibor/euribor.hpp</include>-->
+  </serializationIncludes>
+  <addinIncludes>
+    <include>qlo/multicurveoptimizer.hpp</include>
+    <include>qlo/piecewiseyieldcurve.hpp</include>
+    <!--<include>qlo/indexes/ibor/euribor.hpp</include>-->
+
+    <!--<include>ql/termstructures/yield/piecewiseyieldcurve.hpp</include>
+    <include>ql/termstructures/multibootstrap.hpp</include>-->
+    <!--<include>ql/indexes/ibor/euribor.hpp</include>-->
+  </addinIncludes>
+  <copyright>
+    Copyright (C) 2016 Stefano Fondi
+  </copyright>
+
+  <Functions>
+
+    <Constructor name='qlLinearDiscountMultiCurveOptimizer'>
+      <libraryFunction>LinearDiscountMultiCurveOptimizer</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Calc'/-->
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <!--<processorName>InstrumentProcessor</processorName>-->
+      <ParameterList>
+        <Parameters>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Member name='qlLinearDiscountMultiCurveOptimizerAddTS' type='QuantLibAddin::LinearDiscountMultiCurveOptimizer' superType='objectClass'>
+      <description>Add a termstructure to the multicurve optimizer.</description>
+      <libraryFunction>addTermStructure</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='TermStructure' exampleValue='TermStructureID'>
+            <type>QuantLibAddin::PiecewiseYieldCurve</type>
+            <tensorRank>scalar</tensorRank>
+            <description>termstructure ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>void</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+  </Functions>
+</Category>

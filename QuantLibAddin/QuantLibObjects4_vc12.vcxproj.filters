@@ -861,6 +861,15 @@
     <ClCompile Include="qlo\valueobjects\vo_iboroisbasisswap.cpp">
       <Filter>valueobjects</Filter>
     </ClCompile>
+    <ClCompile Include="qlo\valueobjects\vo_multicurveoptimizer.cpp">
+      <Filter>valueobjects</Filter>
+    </ClCompile>
+    <ClCompile Include="qlo\serialization\create\create_multicurveoptimizer.cpp">
+      <Filter>serialization\create</Filter>
+    </ClCompile>
+    <ClCompile Include="qlo\serialization\register\serialization_multicurveoptimizer.cpp">
+      <Filter>serialization\register</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="qlo\enumerations\register\register_all.hpp">
@@ -1771,6 +1780,16 @@
     </ClInclude>
     <ClInclude Include="qlo\valueobjects\vo_iboroisbasisswap.hpp">
       <Filter>valueobjects</Filter>
+    </ClInclude>
+    <ClInclude Include="qlo\multicurveoptimizer.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_multicurveoptimizer.hpp">
+      <Filter>valueobjects</Filter>
+    </ClInclude>
+    <ClInclude Include="qlo\serialization\create\create_multicurveoptimizer.hpp">
+      <Filter>serialization\create</Filter>
+    </ClInclude>
+    <ClInclude Include="qlo\serialization\register\serialization_multicurveoptimizer.hpp">
+      <Filter>serialization\register</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

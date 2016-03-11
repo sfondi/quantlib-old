@@ -439,8 +439,10 @@
     <ClCompile Include="qlo\iboroisbasisswap.cpp" />
     <ClCompile Include="qlo\serialization\create\create_calibrationhelpers.cpp" />
     <ClCompile Include="qlo\serialization\create\create_iboroisbasisswap.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_multicurveoptimizer.cpp" />
     <ClCompile Include="qlo\serialization\register\serialization_calibrationhelpers.cpp" />
     <ClCompile Include="qlo\serialization\register\serialization_iboroisbasisswap.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_multicurveoptimizer.cpp" />
     <ClCompile Include="qlo\valueobjects\vo_abcd.cpp" />
     <ClCompile Include="qlo\valueobjects\vo_accountingengines.cpp" />
     <ClCompile Include="qlo\valueobjects\vo_alphaform.cpp" />
@@ -473,6 +475,7 @@
     <ClCompile Include="qlo\valueobjects\vo_marketmodelevolvers.cpp" />
     <ClCompile Include="qlo\valueobjects\vo_marketmodels.cpp" />
     <ClCompile Include="qlo\valueobjects\vo_mathf.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_multicurveoptimizer.cpp" />
     <ClCompile Include="qlo\valueobjects\vo_optimization.cpp" />
     <ClCompile Include="qlo\valueobjects\vo_options.cpp" />
     <ClCompile Include="qlo\valueobjects\vo_overnightindexedswap.cpp" />
@@ -712,10 +715,13 @@
     <ClInclude Include="qlo\enumerations\factories\termstructuresfactory.hpp" />
     <ClInclude Include="qlo\iboroisbasisswap.hpp" />
     <ClInclude Include="qlo\models.hpp" />
+    <ClInclude Include="qlo\multicurveoptimizer.hpp" />
     <ClInclude Include="qlo\serialization\create\create_calibrationhelpers.hpp" />
     <ClInclude Include="qlo\serialization\create\create_iboroisbasisswap.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_multicurveoptimizer.hpp" />
     <ClInclude Include="qlo\serialization\register\serialization_calibrationhelpers.hpp" />
     <ClInclude Include="qlo\serialization\register\serialization_iboroisbasisswap.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_multicurveoptimizer.hpp" />
     <ClInclude Include="qlo\valueobjects\vo_abcd.hpp" />
     <ClInclude Include="qlo\valueobjects\vo_accountingengines.hpp" />
     <ClInclude Include="qlo\valueobjects\vo_all.hpp" />
@@ -750,6 +756,7 @@
     <ClInclude Include="qlo\valueobjects\vo_marketmodelevolvers.hpp" />
     <ClInclude Include="qlo\valueobjects\vo_marketmodels.hpp" />
     <ClInclude Include="qlo\valueobjects\vo_mathf.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_multicurveoptimizer.hpp" />
     <ClInclude Include="qlo\valueobjects\vo_optimization.hpp" />
     <ClInclude Include="qlo\valueobjects\vo_options.hpp" />
     <ClInclude Include="qlo\valueobjects\vo_overnightindexedswap.hpp" />

@@ -267,6 +267,8 @@
     <DataType defaultSuperType='objectClass'>QuantLibAddin::PricingEngine</DataType>
     <DataType defaultSuperType='objectClass'>QuantLibAddin::FloatingRateCouponPricer</DataType>
 
+    <DataType defaultSuperType='objectClass'>QuantLibAddin::LinearDiscountMultiCurveOptimizer</DataType>
+
     <DataType defaultSuperType='objectQuote'>QuantLibAddin::SimpleQuote</DataType>
 
     <DataType defaultSuperType='objectTermStructure'>QuantLibAddin::SwaptionVolCube1</DataType>
