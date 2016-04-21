@@ -44,6 +44,7 @@ namespace QuantLib {
       overnightSpread_(0.0),
       fixedDayCount_(overnightIndex->dayCounter()),
       arithmeticAveragedCoupon_(false),
+      exactFormula_(false),
       meanReversion_(0.03),
       vol_(0.00) {}
 
@@ -103,7 +104,8 @@ namespace QuantLib {
                                       overnightIndex_, overnightSpread_,
                                       arithmeticAveragedCoupon_,
                                       meanReversion_,
-                                      vol_);
+                                      vol_,
+                                      exactFormula_);
             if (engine_ == 0) {
                 Handle<YieldTermStructure> disc =
                                     overnightIndex_->forwardingTermStructure();
@@ -127,7 +129,8 @@ namespace QuantLib {
                                  overnightIndex_, overnightSpread_,
                                  arithmeticAveragedCoupon_,
                                  meanReversion_,
-                                 vol_));
+                                 vol_,
+                                 exactFormula_));
 
         if (engine_ == 0) {
             Handle<YieldTermStructure> disc =
@@ -220,10 +223,12 @@ namespace QuantLib {
 
     MakeOIS& MakeOIS::withArithmeticAverage(bool arithmeticAveragedCoupon,
                                             Real meanReversion,
-                                            Real vol) {
+                                            Real vol,
+                                            bool exactFormula) {
         arithmeticAveragedCoupon_ = arithmeticAveragedCoupon;
         meanReversion_ = meanReversion;
         vol_ = vol;
+        exactFormula_ = exactFormula;
         return *this;
     }
 

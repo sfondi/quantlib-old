@@ -139,6 +139,11 @@
             <tensorRank>scalar</tensorRank>
             <description>Volatility of the Hull-White short rate.</description>
           </Parameter>
+          <Parameter name='ExactFormula' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if exact formula is used, FALSE otherwise. </description>
+          </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
@@ -256,6 +261,11 @@
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>Volatility of the Hull-White short rate.</description>
+          </Parameter>
+          <Parameter name='ExactFormula' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if exact formula is used, FALSE otherwise. </description>
           </Parameter>
         </Parameters>
       </ParameterList>

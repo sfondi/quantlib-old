@@ -67,7 +67,8 @@ namespace QuantLib {
                               const boost::shared_ptr<PricingEngine>& engine);
         MakeOIS& withArithmeticAverage(bool arithmeticAveragedCoupon = false,
                                        Real meanReversion = 0.03,
-                                       Real vol = 0.00);
+                                       Real vol = 0.00,
+                                       bool exactFormula = false);
       private:
         Period swapTenor_;
         boost::shared_ptr<OvernightIndex> overnightIndex_;
@@ -81,7 +82,7 @@ namespace QuantLib {
         Frequency paymentFrequency_;
         DateGeneration::Rule rule_;
         bool endOfMonth_, isDefaultEOM_;
-        bool arithmeticAveragedCoupon_;
+        bool arithmeticAveragedCoupon_, exactFormula_;
         Real meanReversion_;
         Real vol_;
 

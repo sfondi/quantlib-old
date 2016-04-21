@@ -201,6 +201,7 @@ namespace QuantLibAddin {
             bool arithmeticAveragedCoupon,
             const QuantLib::Real meanReversion,
             const QuantLib::Real vol,
+            const bool exactFormula,
             const QuantLib::Handle<QuantLib::YieldTermStructure>& discount,
             bool permanent);
     };

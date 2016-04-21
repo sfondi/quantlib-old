@@ -57,13 +57,15 @@ namespace QuantLib {
                     bool arithmeticAveragedCoupon,
                     Real meanReversion,
                     Real vol,
+                    bool exactFormula,
                     const Handle<YieldTermStructure>& discount)
     : RelativeDateRateHelper(fixedRate),
       settlementDays_(settlementDays), tenor_(tenor),
       overnightIndex_(overnightIndex), discountHandle_(discount),
       spread_(spread), paymentFrequency_(paymentFrequency),
       arithmeticAveragedCoupon_(arithmeticAveragedCoupon),
-      meanReversion_(meanReversion), vol_(vol) {
+      meanReversion_(meanReversion), vol_(vol),
+      exactFormula_(exactFormula){
         registerWith(overnightIndex_);
         registerWith(discountHandle_);
         registerWith(spread_);
@@ -86,7 +88,8 @@ namespace QuantLib {
             .withSettlementDays(settlementDays_)
             .withPaymentFrequency(paymentFrequency_)
             .withArithmeticAverage(arithmeticAveragedCoupon_,
-                                   meanReversion_, vol_);
+                                   meanReversion_, vol_,
+                                   exactFormula_);
 
         earliestDate_ = swap_->startDate();
         latestDate_ = swap_->maturityDate();

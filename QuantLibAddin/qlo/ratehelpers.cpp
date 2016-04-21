@@ -273,6 +273,7 @@ namespace QuantLibAddin {
                         bool arithmeticAveragedCoupon,
                         const QuantLib::Real meanReversion,
                         const QuantLib::Real vol,
+                        const bool exactFormula,
                         const QuantLib::Handle<QuantLib::YieldTermStructure>& discount,
                         bool permanent)
     : RateHelper(properties, permanent) {
@@ -284,7 +285,8 @@ namespace QuantLibAddin {
                                     spread,
                                     paymentFrequency,
                                     arithmeticAveragedCoupon,
-                                    meanReversion, vol));
+                                    meanReversion, vol,
+                                    exactFormula));
         quoteName_ = f(properties->getSystemProperty("FixedRate"));
     }
 

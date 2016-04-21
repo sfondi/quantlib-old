@@ -532,6 +532,11 @@
             <tensorRank>scalar</tensorRank>
             <description>Volatility for the Hull-White short rate.</description>
           </Parameter>
+          <Parameter name='ExactFormula' default='false'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if the exact formula is used, FALSE otherwise.</description>
+          </Parameter>
           <Parameter name='DiscountingCurve' exampleValue='EURYC' default='""'>
             <type>QuantLib::YieldTermStructure</type>
             <superType>libToHandle</superType>

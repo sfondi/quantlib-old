@@ -50,6 +50,7 @@ namespace QuantLib {
                       bool arithmeticAveragedCoupon,
                       Real meanReversion,
                       Real vol,
+                      bool exactFormula,
                       // exogenous discounting curve
                       const Handle<YieldTermStructure>& discountingCurve
                                             = Handle<YieldTermStructure>());
@@ -83,6 +84,7 @@ namespace QuantLib {
         bool arithmeticAveragedCoupon_;
         Real meanReversion_;
         Real vol_;
+        bool exactFormula_;
         Handle<Quote> spread_;
     };
 

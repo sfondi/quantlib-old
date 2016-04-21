@@ -54,6 +54,7 @@ namespace QuantLibAddin {
             bool arithmeticAveragedCoupon,
             QuantLib::Real meanReversion,
             QuantLib::Real vol,
+            bool exactFormula,
             bool permanent);
         OvernightIndexedSwap( // MakeOIS
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
@@ -78,6 +79,7 @@ namespace QuantLibAddin {
             bool arithmeticAveragedCoupon,
             QuantLib::Real meanReversion,
             QuantLib::Real vol,
+            bool exactFormula,
             bool permanent);
         OvernightIndexedSwap( // MakeDatedOIS
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,

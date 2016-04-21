@@ -134,7 +134,7 @@ namespace QuantLib {
 
         // already fixed part
         Date today = Settings::instance().evaluationDate();
-        while (i<n && fixingDates[i]<today) {
+        while (i < n && fixingDates[i] < today) {
             // rate must have been fixed
             Rate pastFixing = IndexManager::instance().getHistory(
                 index->name())[fixingDates[i]];
@@ -146,7 +146,7 @@ namespace QuantLib {
         }
 
         // today is a border case
-        if (i<n && fixingDates[i] == today) {
+        if (i < n && fixingDates[i] == today) {
             // might have been fixed
             try {
                 Rate pastFixing = IndexManager::instance().getHistory(
@@ -166,22 +166,43 @@ namespace QuantLib {
 
         // forward part using telescopic property in order
         // to avoid the evaluation of multiple forward fixings
-        if (i<n) {
+        if (exactFormula_){
             Handle<YieldTermStructure> curve =
                 index->forwardingTermStructure();
-            QL_REQUIRE(!curve.empty(),
-                "null term structure set to this instance of " <<
-                index->name());
-
             const vector<Date>& dates = coupon_->valueDates();
-            DiscountFactor startDiscount = curve->discount(dates[i]);
-            DiscountFactor endDiscount = curve->discount(dates[n]);
+            Time te = curve->timeFromReference(dates[n]);
+            Real vol = vol_->value();
+            Real k = meanReversion_->value();
+            while (i < n) {
+                // forcast fixing
+                Rate forecastFixing = index->fixing(fixingDates[i]);
+                Time ti1 = curve->timeFromReference(dates[i]);
+                Time ti2 = curve->timeFromReference(dates[i+1]);
+                Real convAdj = exp(0.5*pow(vol / k, 2.0)*(1 - exp(2 * k*ti1))*
+                    (-exp(-2 * k*ti2) + exp(-k*(ti2 + ti1)) +
+                    exp(-k*(te + ti2)) - exp(-k*(te + ti1))));
+                accumulatedRate += convAdj*(1+forecastFixing*dt[i])-1;
+                ++i;
+            }
+        }
+        else {
+            if (i < n) {
+                Handle<YieldTermStructure> curve =
+                    index->forwardingTermStructure();
+                QL_REQUIRE(!curve.empty(),
+                    "null term structure set to this instance of " <<
+                    index->name());
 
-            accumulatedRate += log(startDiscount / endDiscount) - convAdj1(curve->timeFromReference(dates[i]),
-                curve->timeFromReference(dates[n]))
-                - convAdj2(curve->timeFromReference(dates[i]),
-                curve->timeFromReference(dates[n]));
+                const vector<Date>& dates = coupon_->valueDates();
+                DiscountFactor startDiscount = curve->discount(dates[i]);
+                DiscountFactor endDiscount = curve->discount(dates[n]);
 
+                accumulatedRate += log(startDiscount / endDiscount) - 
+                    convAdj1(curve->timeFromReference(dates[i]),
+                             curve->timeFromReference(dates[n])) -
+                    convAdj2(curve->timeFromReference(dates[i]),
+                             curve->timeFromReference(dates[n]));
+            }
         }
 
         Rate rate = accumulatedRate / coupon_->accrualPeriod();

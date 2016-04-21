@@ -67,6 +67,7 @@ namespace QuantLibAddin {
             bool arithmeticAveragedCoupon,
             QuantLib::Real meanReversion,
             QuantLib::Real vol,
+            bool exactFormula,
             bool permanent)
     : Swap(properties, permanent)
     {
@@ -76,7 +77,7 @@ namespace QuantLibAddin {
                                            fixedRate, fixedDC,
                                            overnightIndex, overnightSpread,
                                            arithmeticAveragedCoupon,
-                                           meanReversion, vol));
+                                           meanReversion, vol, exactFormula));
     }
 
     // MakeOIS
@@ -113,6 +114,7 @@ namespace QuantLibAddin {
         bool arithmeticAveragedCoupon,
         QuantLib::Real meanReversion,
         QuantLib::Real vol,
+        bool exactFormula,
         bool permanent)
         : Swap(properties, permanent)
     {
@@ -121,7 +123,7 @@ namespace QuantLibAddin {
             .withFixedLegDayCount(fixDayCounter)
             .withPaymentFrequency(paymentFrequency)
             .withOvernightLegSpread(overnightSpread)
-            .withArithmeticAverage(arithmeticAveragedCoupon, meanReversion, vol)
+            .withArithmeticAverage(arithmeticAveragedCoupon, meanReversion, vol, exactFormula)
             .operator shared_ptr<QuantLib::OvernightIndexedSwap>();
     }
 

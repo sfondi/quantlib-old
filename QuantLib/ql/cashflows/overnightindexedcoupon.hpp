@@ -115,8 +115,10 @@ namespace QuantLib {
             Handle<Quote> vol =
                 Handle<Quote>(boost::shared_ptr<Quote>(new SimpleQuote(0.00))))*/
             Real meanReversion = 0.03,
-            Real vol = 0.00)           
-            : meanReversion_(Handle<Quote>(
+            Real vol = 0.00,
+            bool exactFormula = false)
+            : exactFormula_(exactFormula),
+            meanReversion_(Handle<Quote>(
                 boost::shared_ptr<Quote>(new SimpleQuote(meanReversion)))),
             vol_(Handle<Quote>(
                 boost::shared_ptr<Quote>(new SimpleQuote(vol)))) {}
@@ -135,6 +137,7 @@ namespace QuantLib {
         Real convAdj1(Time ts, Time te) const;
         Real convAdj2(Time ts, Time te) const;
         const OvernightIndexedCoupon* coupon_;
+        bool exactFormula_;
         Handle<Quote> meanReversion_;
         Handle<Quote> vol_;
 
