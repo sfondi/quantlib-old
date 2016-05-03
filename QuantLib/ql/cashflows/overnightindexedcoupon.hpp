@@ -107,21 +107,13 @@ namespace QuantLib {
     Fed Funds Rates and Construction of the US Dollar Swap Yield Curve
     */
     class ArithmeticAveragedOvernightIndexedCouponPricer
-        : public FloatingRateCouponPricer {
+                                         : public FloatingRateCouponPricer {
     public:
         ArithmeticAveragedOvernightIndexedCouponPricer(
-            /*Handle<Quote> meanReversion =
-                Handle<Quote>(boost::shared_ptr<Quote>(new SimpleQuote(0.03))),
-            Handle<Quote> vol =
-                Handle<Quote>(boost::shared_ptr<Quote>(new SimpleQuote(0.00))))*/
             Real meanReversion = 0.03,
-            Real vol = 0.00,
-            bool exactFormula = false)
-            : exactFormula_(exactFormula),
-            meanReversion_(Handle<Quote>(
-                boost::shared_ptr<Quote>(new SimpleQuote(meanReversion)))),
-            vol_(Handle<Quote>(
-                boost::shared_ptr<Quote>(new SimpleQuote(vol)))) {}
+            Real volatility = 0.00,
+            bool byApprox = false)
+        : byApprox_(byApprox), mrs_(meanReversion), vol_(volatility) {}
 
         void initialize(const FloatingRateCoupon& coupon);
         Rate swapletRate() const;
@@ -130,16 +122,13 @@ namespace QuantLib {
         Rate capletRate(Rate) const { QL_FAIL("capletRate not available"); }
         Real floorletPrice(Rate) const { QL_FAIL("floorletPrice not available"); }
         Rate floorletRate(Rate) const { QL_FAIL("floorletRate not available"); }
-        Real meanReversion() const { meanReversion_->value();};
-        Real volatility() const { vol_->value();
-    };
     protected:
         Real convAdj1(Time ts, Time te) const;
         Real convAdj2(Time ts, Time te) const;
         const OvernightIndexedCoupon* coupon_;
-        bool exactFormula_;
-        Handle<Quote> meanReversion_;
-        Handle<Quote> vol_;
+        bool byApprox_;
+        Real mrs_;
+        Real vol_;
 
     };
 

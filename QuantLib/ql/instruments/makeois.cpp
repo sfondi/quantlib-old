@@ -43,9 +43,10 @@ namespace QuantLib {
       type_(OvernightIndexedSwap::Payer), nominal_(1.0),
       overnightSpread_(0.0),
       fixedDayCount_(overnightIndex->dayCounter()),
+      // generally the coupon is not an arithmetic averaged of daily fixings
       arithmeticAveragedCoupon_(false),
-      exactFormula_(false),
-      meanReversion_(0.03),
+      byApprox_(false),
+      mrs_(0.03),
       vol_(0.00) {}
 
     MakeOIS::operator OvernightIndexedSwap() const {
@@ -101,11 +102,10 @@ namespace QuantLib {
                                       schedule,
                                       0.0, // fixed rate
                                       fixedDayCount_,
-                                      overnightIndex_, overnightSpread_,
+                                      overnightIndex_,
+                                      overnightSpread_,
                                       arithmeticAveragedCoupon_,
-                                      meanReversion_,
-                                      vol_,
-                                      exactFormula_);
+                                      mrs_, vol_, byApprox_);
             if (engine_ == 0) {
                 Handle<YieldTermStructure> disc =
                                     overnightIndex_->forwardingTermStructure();
@@ -126,11 +126,10 @@ namespace QuantLib {
             OvernightIndexedSwap(type_, nominal_,
                                  schedule,
                                  usedFixedRate, fixedDayCount_,
-                                 overnightIndex_, overnightSpread_,
+                                 overnightIndex_,
+                                 overnightSpread_,
                                  arithmeticAveragedCoupon_,
-                                 meanReversion_,
-                                 vol_,
-                                 exactFormula_));
+                                 mrs_, vol_, byApprox_));
 
         if (engine_ == 0) {
             Handle<YieldTermStructure> disc =
@@ -221,14 +220,13 @@ namespace QuantLib {
         return *this;
     }
 
-    MakeOIS& MakeOIS::withArithmeticAverage(bool arithmeticAveragedCoupon,
-                                            Real meanReversion,
-                                            Real vol,
-                                            bool exactFormula) {
-        arithmeticAveragedCoupon_ = arithmeticAveragedCoupon;
-        meanReversion_ = meanReversion;
-        vol_ = vol;
-        exactFormula_ = exactFormula;
+    MakeOIS& MakeOIS::withArithmeticAverage(Real meanReversionSpeed,
+                                            Real volatility,
+                                            bool byApprox) {
+        arithmeticAveragedCoupon_ = true;
+        mrs_ = meanReversionSpeed;
+        vol_ = volatility;
+        byApprox_ = byApprox;
         return *this;
     }
 

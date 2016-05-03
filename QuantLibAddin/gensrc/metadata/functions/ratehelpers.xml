@@ -475,7 +475,7 @@
       </ParameterList>
     </Constructor>
 
-    <Constructor name='qlOISAARateHelper'>
+    <Constructor name='qlArithmeticAveragedOISRateHelper'>
       <libraryFunction>OISRateHelper</libraryFunction>
       <SupportedPlatforms>
         SupportedPlatform name='Excel' calcInWizard='false'/
@@ -517,25 +517,20 @@
             <tensorRank>scalar</tensorRank>
             <description>payment frequency.</description>
           </Parameter>
-          <Parameter name='ArithmeticAveragedCoupon' default='false'>
-            <type>bool</type>
-            <tensorRank>scalar</tensorRank>
-            <description>TRUE if arithmetic average is used, FALSE otherwise.</description>
-          </Parameter>
-          <Parameter name='MeanReversion' exampleValue='0.03'>
+          <Parameter name='MeanReversionSpeed' exampleValue='0.03'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>meanReverison for the Hull-White short rate .</description>
           </Parameter>
-          <Parameter name='Vol' exampleValue='0.00'>
+          <Parameter name='Volatility' exampleValue='0.00'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>Volatility for the Hull-White short rate.</description>
           </Parameter>
-          <Parameter name='ExactFormula' default='false'>
+          <Parameter name='ByApprox' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if the exact formula is used, FALSE otherwise.</description>
+            <description>TRUE to use approximation through geometric average.</description>
           </Parameter>
           <Parameter name='DiscountingCurve' exampleValue='EURYC' default='""'>
             <type>QuantLib::YieldTermStructure</type>

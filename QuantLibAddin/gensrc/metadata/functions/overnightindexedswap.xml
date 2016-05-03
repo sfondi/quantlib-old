@@ -77,7 +77,7 @@
       </ParameterList>
     </Constructor>
 
-    <Constructor name='qlOvernightIndexedSwapAA'>
+    <Constructor name='qlArithmeticAveragedOvernightIndexedSwap'>
       <libraryFunction>OvernightIndexedSwap</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -129,7 +129,7 @@
             <tensorRank>scalar</tensorRank>
             <description>TRUE if arithmetic average is used, FALSE otherwise. </description>
           </Parameter>
-          <Parameter name='MeanReversion' default='0.03'>
+          <Parameter name='MeanReversionSpeed' default='0.03'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>MeanReversion of the Hull-White short rate.</description>
@@ -139,10 +139,10 @@
             <tensorRank>scalar</tensorRank>
             <description>Volatility of the Hull-White short rate.</description>
           </Parameter>
-          <Parameter name='ExactFormula' default='false'>
+          <Parameter name='ByApprox' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if exact formula is used, FALSE otherwise. </description>
+            <description>TRUE to use approximation through geometric average. </description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -197,7 +197,7 @@
       </ParameterList>
     </Constructor>
 
-    <Constructor name='qlMakeOISAA'>
+    <Constructor name='qlMakeArithmeticAveragedOIS'>
       <libraryFunction>OvernightIndexedSwap</libraryFunction>
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
@@ -247,12 +247,7 @@
             <tensorRank>scalar</tensorRank>
             <description>the spread in the overnight leg rate.</description>
           </Parameter>
-          <Parameter name='ArithmeticAveragedCoupon' default='false'>
-            <type>bool</type>
-            <tensorRank>scalar</tensorRank>
-            <description>TRUE if arithmetic average is used, FALSE otherwise. </description>
-          </Parameter>
-          <Parameter name='MeanReversion' default='0.03'>
+          <Parameter name='MeanReversionSpeed' default='0.03'>
             <type>QuantLib::Real</type>
             <tensorRank>scalar</tensorRank>
             <description>MeanReversion of the Hull-White short rate.</description>
@@ -262,10 +257,10 @@
             <tensorRank>scalar</tensorRank>
             <description>Volatility of the Hull-White short rate.</description>
           </Parameter>
-          <Parameter name='ExactFormula' default='false'>
+          <Parameter name='ByApprox' default='false'>
             <type>bool</type>
             <tensorRank>scalar</tensorRank>
-            <description>TRUE if exact formula is used, FALSE otherwise. </description>
+            <description>TRUE to use approximation through geometric average. </description>
           </Parameter>
         </Parameters>
       </ParameterList>

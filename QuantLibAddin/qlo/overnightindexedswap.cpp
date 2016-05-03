@@ -65,9 +65,9 @@ namespace QuantLibAddin {
             const shared_ptr<QuantLib::OvernightIndex>& overnightIndex,
             QuantLib::Spread overnightSpread,
             bool arithmeticAveragedCoupon,
-            QuantLib::Real meanReversion,
-            QuantLib::Real vol,
-            bool exactFormula,
+            QuantLib::Real meanReversionSpeed,
+            QuantLib::Real volatility,
+            bool byApprox,
             bool permanent)
     : Swap(properties, permanent)
     {
@@ -77,7 +77,8 @@ namespace QuantLibAddin {
                                            fixedRate, fixedDC,
                                            overnightIndex, overnightSpread,
                                            arithmeticAveragedCoupon,
-                                           meanReversion, vol, exactFormula));
+                                           meanReversionSpeed,
+                                           volatility, byApprox));
     }
 
     // MakeOIS
@@ -100,7 +101,7 @@ namespace QuantLibAddin {
                         .operator shared_ptr<QuantLib::OvernightIndexedSwap>();
     }
 
-    // MakeOISAA
+    // MakeArithmeticAveragedOIS
     OvernightIndexedSwap::OvernightIndexedSwap(
         const shared_ptr<ObjectHandler::ValueObject>& properties,
         QuantLib::Natural settlDays,
@@ -111,10 +112,9 @@ namespace QuantLibAddin {
         const QuantLib::DayCounter& fixDayCounter,
         const QuantLib::Frequency paymentFrequency,
         QuantLib::Spread overnightSpread,
-        bool arithmeticAveragedCoupon,
-        QuantLib::Real meanReversion,
-        QuantLib::Real vol,
-        bool exactFormula,
+        QuantLib::Real meanReversionSpeed,
+        QuantLib::Real volatility,
+        bool byApprox,
         bool permanent)
         : Swap(properties, permanent)
     {
@@ -123,7 +123,7 @@ namespace QuantLibAddin {
             .withFixedLegDayCount(fixDayCounter)
             .withPaymentFrequency(paymentFrequency)
             .withOvernightLegSpread(overnightSpread)
-            .withArithmeticAverage(arithmeticAveragedCoupon, meanReversion, vol, exactFormula)
+            .withArithmeticAverage(meanReversionSpeed, volatility, byApprox)
             .operator shared_ptr<QuantLib::OvernightIndexedSwap>();
     }
 

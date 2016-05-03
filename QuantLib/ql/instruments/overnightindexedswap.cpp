@@ -33,17 +33,17 @@ namespace QuantLib {
                     const boost::shared_ptr<OvernightIndex>& overnightIndex,
                     Spread spread,
                     bool arithmeticAveragedCoupon,
-                    Real meanReversion,
-                    Real vol,
-                    bool exactFormula)
+                    Real meanReversionSpeed,
+                    Real volatility,
+                    bool byApprox)
     : Swap(2), type_(type),
       nominals_(std::vector<Real>(1, nominal)),
       paymentFrequency_(schedule.tenor().frequency()),
       fixedRate_(fixedRate), fixedDC_(fixedDC),
       overnightIndex_(overnightIndex), spread_(spread),
       arithmeticAveragedCoupon_(arithmeticAveragedCoupon),
-      meanReversion_(meanReversion), vol_(vol),
-      exactFormula_(exactFormula) {
+      mrs_(meanReversionSpeed), vol_(volatility),
+      byApprox_(byApprox) {
 
           initialize(schedule);
 
@@ -58,16 +58,16 @@ namespace QuantLib {
                     const boost::shared_ptr<OvernightIndex>& overnightIndex,
                     Spread spread,
                     bool arithmeticAveragedCoupon,
-                    Real meanReversion,
-                    Real vol,
-                    bool exactFormula)
+                    Real meanReversionSpeed,
+                    Real volatility,
+                    bool byApprox)
     : Swap(2), type_(type), nominals_(nominals),
       paymentFrequency_(schedule.tenor().frequency()),
       fixedRate_(fixedRate), fixedDC_(fixedDC),
       overnightIndex_(overnightIndex), spread_(spread),
       arithmeticAveragedCoupon_(arithmeticAveragedCoupon),
-      meanReversion_(meanReversion), vol_(vol),
-      exactFormula_(exactFormula) {
+      mrs_(meanReversionSpeed), vol_(volatility),
+      byApprox_(byApprox) {
 
           initialize(schedule);
 
@@ -86,10 +86,13 @@ namespace QuantLib {
 
         if (arithmeticAveragedCoupon_) {
             boost::shared_ptr<FloatingRateCouponPricer> arithmeticPricer(
-                new ArithmeticAveragedOvernightIndexedCouponPricer(meanReversion_,vol_,exactFormula_));
+                new ArithmeticAveragedOvernightIndexedCouponPricer(
+                    mrs_, vol_, byApprox_));
             for (Size i = 0; i < legs_[1].size(); i++) {
-                boost::shared_ptr<OvernightIndexedCoupon> c =
-                    boost::dynamic_pointer_cast<OvernightIndexedCoupon> (legs_[1][i]);
+                boost::shared_ptr<
+                    OvernightIndexedCoupon> c = 
+                        boost::dynamic_pointer_cast<
+                            OvernightIndexedCoupon> (legs_[1][i]);
                 c->setPricer(arithmeticPricer);
             }
         }

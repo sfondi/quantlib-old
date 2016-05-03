@@ -166,42 +166,44 @@ namespace QuantLib {
 
         // forward part using telescopic property in order
         // to avoid the evaluation of multiple forward fixings
-        if (exactFormula_){
+        if (byApprox_ && i < n) {
             Handle<YieldTermStructure> curve =
                 index->forwardingTermStructure();
+            QL_REQUIRE(!curve.empty(),
+                "null term structure set to this instance of " <<
+                index->name());
+
+            const vector<Date>& dates = coupon_->valueDates();
+            DiscountFactor startDiscount = curve->discount(dates[i]);
+            DiscountFactor endDiscount = curve->discount(dates[n]);
+
+            accumulatedRate += log(startDiscount / endDiscount) + 
+                convAdj1(curve->timeFromReference(dates[i]),
+                         curve->timeFromReference(dates[n])) +
+                convAdj2(curve->timeFromReference(dates[i]),
+                         curve->timeFromReference(dates[n]));
+        }
+        // otherwise
+        else if (i < n){
+            Handle<YieldTermStructure> curve =
+                index->forwardingTermStructure();
+            QL_REQUIRE(!curve.empty(),
+                "null term structure set to this instance of " <<
+                index->name());
+
             const vector<Date>& dates = coupon_->valueDates();
             Time te = curve->timeFromReference(dates[n]);
-            Real vol = vol_->value();
-            Real k = meanReversion_->value();
             while (i < n) {
                 // forcast fixing
                 Rate forecastFixing = index->fixing(fixingDates[i]);
                 Time ti1 = curve->timeFromReference(dates[i]);
-                Time ti2 = curve->timeFromReference(dates[i+1]);
-                Real convAdj = exp(0.5*pow(vol / k, 2.0)*(1 - exp(2 * k*ti1))*
-                    (-exp(-2 * k*ti2) + exp(-k*(ti2 + ti1)) +
-                    exp(-k*(te + ti2)) - exp(-k*(te + ti1))));
-                accumulatedRate += convAdj*(1+forecastFixing*dt[i])-1;
+                Time ti2 = curve->timeFromReference(dates[i + 1]);
+                Real convAdj = exp( 0.5*pow(vol_, 2.0) / pow(mrs_, 3.0)*
+                    (exp(2 * mrs_*ti1) - 1)*
+                    (exp(-mrs_*ti2) - exp(-mrs_*te))*
+                    (exp(-mrs_*ti1) - exp(-mrs_*ti2)) );
+                accumulatedRate += convAdj*(1 + forecastFixing*dt[i]) - 1;
                 ++i;
-            }
-        }
-        else {
-            if (i < n) {
-                Handle<YieldTermStructure> curve =
-                    index->forwardingTermStructure();
-                QL_REQUIRE(!curve.empty(),
-                    "null term structure set to this instance of " <<
-                    index->name());
-
-                const vector<Date>& dates = coupon_->valueDates();
-                DiscountFactor startDiscount = curve->discount(dates[i]);
-                DiscountFactor endDiscount = curve->discount(dates[n]);
-
-                accumulatedRate += log(startDiscount / endDiscount) - 
-                    convAdj1(curve->timeFromReference(dates[i]),
-                             curve->timeFromReference(dates[n])) -
-                    convAdj2(curve->timeFromReference(dates[i]),
-                             curve->timeFromReference(dates[n]));
             }
         }
 
@@ -209,18 +211,18 @@ namespace QuantLib {
         return coupon_->gearing() * rate + coupon_->spread();
     }
 
-    Real ArithmeticAveragedOvernightIndexedCouponPricer::convAdj1(Time ts, Time te) const {
-        Real vol = vol_->value();
-        Real k = meanReversion_->value();
-        return vol * vol / (4.0 * pow(k, 3.0)) * (1.0 - exp(-2.0*k*ts)) * pow((1.0 - exp(-k*(te - ts))), 2.0);
+    Real ArithmeticAveragedOvernightIndexedCouponPricer::convAdj1(
+                                                    Time ts, Time te) const {
+        return vol_ * vol_ / (4.0 * pow(mrs_, 3.0)) *
+            (1.0 - exp(-2.0*mrs_*ts)) *
+            pow((1.0 - exp(-mrs_*(te - ts))), 2.0);
     }
 
-    Real ArithmeticAveragedOvernightIndexedCouponPricer::convAdj2(Time ts, Time te) const {
-        Real vol = vol_->value();
-        Real k = meanReversion_->value();
-        return vol * vol / (2.0 * pow(k, 2.0)) * ((te - ts) -
-            pow(1.0 - exp(-k*(te - ts)), 2.0) / k -
-            (1.0 - exp(-2.0*k*(te - ts))) / (2.0 * k));
+    Real ArithmeticAveragedOvernightIndexedCouponPricer::convAdj2(
+                                                    Time ts, Time te) const {
+        return vol_ * vol_ / (2.0 * pow(mrs_, 2.0)) * ((te - ts) -
+            pow(1.0 - exp(-mrs_*(te - ts)), 2.0) / mrs_ -
+            (1.0 - exp(-2.0*mrs_*(te - ts))) / (2.0 * mrs_));
     }
 
     OvernightIndexedCoupon::OvernightIndexedCoupon(

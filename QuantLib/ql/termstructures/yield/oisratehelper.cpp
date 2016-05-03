@@ -47,6 +47,7 @@ namespace QuantLib {
         initializeDates();
     }
 
+    // Specific constructor for the Arithmetic Averaged OIS
     OISRateHelper::OISRateHelper(
                     Natural settlementDays,
                     const Period& tenor, // swap maturity
@@ -54,18 +55,17 @@ namespace QuantLib {
                     const boost::shared_ptr<OvernightIndex>& overnightIndex,
                     const Handle<Quote>& spread,
                     Frequency paymentFrequency,
-                    bool arithmeticAveragedCoupon,
-                    Real meanReversion,
-                    Real vol,
-                    bool exactFormula,
+                    Real meanReversionSpeed,
+                    Real volatility,
+                    bool byApprox,
                     const Handle<YieldTermStructure>& discount)
     : RelativeDateRateHelper(fixedRate),
       settlementDays_(settlementDays), tenor_(tenor),
       overnightIndex_(overnightIndex), discountHandle_(discount),
       spread_(spread), paymentFrequency_(paymentFrequency),
-      arithmeticAveragedCoupon_(arithmeticAveragedCoupon),
-      meanReversion_(meanReversion), vol_(vol),
-      exactFormula_(exactFormula){
+      arithmeticAveragedCoupon_(true),
+      mrs_(meanReversionSpeed), vol_(volatility),
+      byApprox_(byApprox){
         registerWith(overnightIndex_);
         registerWith(discountHandle_);
         registerWith(spread_);
@@ -81,15 +81,20 @@ namespace QuantLib {
         shared_ptr<OvernightIndex> clonedOvernightIndex =
             boost::dynamic_pointer_cast<OvernightIndex>(clonedIborIndex);
 
-        // input discount curve Handle might be empty now but it could
-        //    be assigned a curve later; use a RelinkableHandle here
-        swap_ = MakeOIS(tenor_, clonedOvernightIndex, 0.0)
-            .withDiscountingTermStructure(discountRelinkableHandle_)
-            .withSettlementDays(settlementDays_)
-            .withPaymentFrequency(paymentFrequency_)
-            .withArithmeticAverage(arithmeticAveragedCoupon_,
-                                   meanReversion_, vol_,
-                                   exactFormula_);
+        if (arithmeticAveragedCoupon_)
+            // input discount curve Handle might be empty now but it could
+            // be assigned a curve later; use a RelinkableHandle here
+            swap_ = MakeOIS(tenor_, clonedOvernightIndex, 0.0)
+                .withDiscountingTermStructure(discountRelinkableHandle_)
+                .withSettlementDays(settlementDays_)
+                .withPaymentFrequency(paymentFrequency_)
+                // arithmetic averaged coupon
+                .withArithmeticAverage(mrs_, vol_, byApprox_);
+        else
+            swap_ = MakeOIS(tenor_, clonedOvernightIndex, 0.0)
+                .withDiscountingTermStructure(discountRelinkableHandle_)
+                .withSettlementDays(settlementDays_)
+                .withPaymentFrequency(paymentFrequency_);
 
         earliestDate_ = swap_->startDate();
         latestDate_ = swap_->maturityDate();

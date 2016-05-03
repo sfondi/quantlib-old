@@ -190,6 +190,7 @@ namespace QuantLibAddin {
             const QuantLib::Handle<QuantLib::YieldTermStructure>& discount,
             bool permanent);
 
+        // Arithemtic Averaged OIS
         OISRateHelper(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
             QuantLib::Natural settlementDays,
@@ -198,10 +199,9 @@ namespace QuantLibAddin {
             const boost::shared_ptr<QuantLib::OvernightIndex>& overnightIndex,
             const QuantLib::Handle<QuantLib::Quote>& spread,
             const QuantLib::Frequency paymentFrequency,
-            bool arithmeticAveragedCoupon,
-            const QuantLib::Real meanReversion,
-            const QuantLib::Real vol,
-            const bool exactFormula,
+            const QuantLib::Real meanReversionSpeed,
+            const QuantLib::Real volatility,
+            const bool byApprox,
             const QuantLib::Handle<QuantLib::YieldTermStructure>& discount,
             bool permanent);
     };

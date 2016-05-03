@@ -41,16 +41,16 @@ namespace QuantLib {
                       // exogenous discounting curve
                       const Handle<YieldTermStructure>& discountingCurve
                                             = Handle<YieldTermStructure>());
+        // Specific constructor for the Arithmetic Averaged OIS
         OISRateHelper(Natural settlementDays,
                       const Period& tenor, // swap maturity
                       const Handle<Quote>& fixedRate,
                       const boost::shared_ptr<OvernightIndex>& overnightIndex,
                       const Handle<Quote>& spread,
                       Frequency paymentFrequency,
-                      bool arithmeticAveragedCoupon,
-                      Real meanReversion,
-                      Real vol,
-                      bool exactFormula,
+                      Real meanReversionSpeed,
+                      Real volatility,
+                      bool byApprox,
                       // exogenous discounting curve
                       const Handle<YieldTermStructure>& discountingCurve
                                             = Handle<YieldTermStructure>());
@@ -81,11 +81,13 @@ namespace QuantLib {
         RelinkableHandle<YieldTermStructure> discountRelinkableHandle_;
 
         Frequency paymentFrequency_;
-        bool arithmeticAveragedCoupon_;
-        Real meanReversion_;
-        Real vol_;
-        bool exactFormula_;
         Handle<Quote> spread_;
+
+        bool arithmeticAveragedCoupon_;
+        Real mrs_;
+        Real vol_;
+        bool byApprox_;
+ 
     };
 
     //! Rate helper for bootstrapping over Overnight Indexed Swap rates
