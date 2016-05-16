@@ -43,7 +43,7 @@ namespace QuantLib {
       type_(OvernightIndexedSwap::Payer), nominal_(1.0),
       overnightSpread_(0.0),
       fixedDayCount_(overnightIndex->dayCounter()),
-      // generally the coupon is not an arithmetic averaged of daily fixings
+      // except for the Fed Funds OIS, the coupon is not an arithmetic average of daily fixings
       arithmeticAveragedCoupon_(false),
       byApprox_(false),
       mrs_(0.03),
