@@ -177,9 +177,9 @@ namespace QuantLib {
             DiscountFactor startDiscount = curve->discount(dates[i]);
             DiscountFactor endDiscount = curve->discount(dates[n]);
 
-            accumulatedRate += log(startDiscount / endDiscount) + 
+            accumulatedRate += log(startDiscount / endDiscount) - 
                 convAdj1(curve->timeFromReference(dates[i]),
-                         curve->timeFromReference(dates[n])) +
+                         curve->timeFromReference(dates[n])) -
                 convAdj2(curve->timeFromReference(dates[i]),
                          curve->timeFromReference(dates[n]));
         }
@@ -201,7 +201,7 @@ namespace QuantLib {
                 Real convAdj = exp( 0.5*pow(vol_, 2.0) / pow(mrs_, 3.0)*
                     (exp(2 * mrs_*ti1) - 1)*
                     (exp(-mrs_*ti2) - exp(-mrs_*te))*
-                    (exp(-mrs_*ti1) - exp(-mrs_*ti2)) );
+                    (exp(-mrs_*ti2) - exp(-mrs_*ti1)) );
                 accumulatedRate += convAdj*(1 + forecastFixing*dt[i]) - 1;
                 ++i;
             }
